@@ -8,6 +8,6 @@ public class Index {
     @RequestMapping("/")
     public String index(){
         return "index";
-//提交测试123
+//提交测试branch huang
     }
 }

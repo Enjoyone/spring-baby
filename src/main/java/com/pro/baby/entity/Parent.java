@@ -1,96 +1,109 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Parent {
-	private String parentID;
-	private String pwd;
-	private String name;
-	private String sex;
-	private String birth;
-	private String role;
-	private String address;
-	private String phone;
-	private int kidNum;
-	private boolean status;
+    @GeneratedValue
+    @Id
+    private int parentID;
 
-	
-	
-	public int getKidNum() {
-		return kidNum;
-	}
 
-	public void setKidNum(int kidNum) {
-		this.kidNum = kidNum;
-	}
+    private  String parentUserName;
+    private String pwd;
+    private String name;
+    private String sex;
+    private String birth;
+    private String role;
+    private String address;
+    private String phone;
+    private int kidNum;
+    private boolean status;
 
-	public String getParentID() {
-		return parentID;
-	}
+    public Parent(String parentUserName) {
+        this.parentUserName = parentUserName;
+    }
 
-	public void setParentID(String parentID) {
-		this.parentID = parentID;
-	}
 
-	public String getPwd() {
-		return pwd;
-	}
+    public int getKidNum() {
+        return kidNum;
+    }
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+    public void setKidNum(int kidNum) {
+        this.kidNum = kidNum;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int getParentID() {
+        return parentID;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setParentID(int parentID) {
+        this.parentID = parentID;
+    }
 
-	public String getSex() {
-		return sex;
-	}
+    public String getPwd() {
+        return pwd;
+    }
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 
-	public String getBirth() {
-		return birth;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getSex() {
+        return sex;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getBirth() {
+        return birth;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public boolean isStatus() {
-		return status;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

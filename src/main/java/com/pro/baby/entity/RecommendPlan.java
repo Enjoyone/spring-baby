@@ -1,60 +1,71 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class RecommendPlan {
+    @GeneratedValue
+    @Id
+    private int recommendPlanID;
 
-	private int recommendPlanID;
-	private Parent parentID;
-	private String recommendPlanTitle;
-	private String recommendPlanContent;
-	private String recommendPlanRemindTime;
-	private boolean recommendPlanStatus;
+    @ManyToOne
+    private Parent parentID;
 
-	public int getRecommendPlanID() {
-		return recommendPlanID;
-	}
+    private String recommendPlanTitle;
+    private String recommendPlanContent;
 
-	public void setRecommendPlanID(int recommendPlanID) {
-		this.recommendPlanID = recommendPlanID;
-	}
+    private LocalDate recommendPlanRemindTime;
+    private boolean recommendPlanStatus;
 
-	public Parent getParentID() {
-		return parentID;
-	}
+    public int getRecommendPlanID() {
+        return recommendPlanID;
+    }
 
-	public void setParentID(Parent parentID) {
-		this.parentID = parentID;
-	}
+    public void setRecommendPlanID(int recommendPlanID) {
+        this.recommendPlanID = recommendPlanID;
+    }
 
-	public String getRecommendPlanTitle() {
-		return recommendPlanTitle;
-	}
+    public Parent getParentID() {
+        return parentID;
+    }
 
-	public void setRecommendPlanTitle(String recommendPlanTitle) {
-		this.recommendPlanTitle = recommendPlanTitle;
-	}
+    public void setParentID(Parent parentID) {
+        this.parentID = parentID;
+    }
 
-	public String getRecommendPlanContent() {
-		return recommendPlanContent;
-	}
+    public String getRecommendPlanTitle() {
+        return recommendPlanTitle;
+    }
 
-	public void setRecommendPlanContent(String recommendPlanContent) {
-		this.recommendPlanContent = recommendPlanContent;
-	}
+    public void setRecommendPlanTitle(String recommendPlanTitle) {
+        this.recommendPlanTitle = recommendPlanTitle;
+    }
 
-	public String getRecommendPlanRemindTime() {
-		return recommendPlanRemindTime;
-	}
+    public String getRecommendPlanContent() {
+        return recommendPlanContent;
+    }
 
-	public void setRecommendPlanRemindTime(String recommendPlanRemindTime) {
-		this.recommendPlanRemindTime = recommendPlanRemindTime;
-	}
+    public void setRecommendPlanContent(String recommendPlanContent) {
+        this.recommendPlanContent = recommendPlanContent;
+    }
 
-	public boolean isRecommendPlanStatus() {
-		return recommendPlanStatus;
-	}
+    public LocalDate getRecommendPlanRemindTime() {
+        return recommendPlanRemindTime;
+    }
 
-	public void setRecommendPlanStatus(boolean recommendPlanStatus) {
-		this.recommendPlanStatus = recommendPlanStatus;
-	}
+    public void setRecommendPlanRemindTime(LocalDate recommendPlanRemindTime) {
+        this.recommendPlanRemindTime = recommendPlanRemindTime;
+    }
 
+    public boolean isRecommendPlanStatus() {
+        return recommendPlanStatus;
+    }
+
+    public void setRecommendPlanStatus(boolean recommendPlanStatus) {
+        this.recommendPlanStatus = recommendPlanStatus;
+    }
 }

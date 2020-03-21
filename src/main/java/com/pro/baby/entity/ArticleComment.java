@@ -1,59 +1,71 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class ArticleComment {
-	private int articleCommentID;
-	private Article articleID;
-	private Parent parentID;
-	private String articleCommentContent;
-	private String articleCommentTime;
-	private boolean articleCommentStatus;
+    @GeneratedValue
+    @Id
+    private int articleCommentID;
+    @ManyToOne
+    private Article articleID;
+    @ManyToOne
+    private Parent parentID;
+    private String articleCommentContent;
 
-	public int getArticleCommentID() {
-		return articleCommentID;
-	}
+    private LocalDate articleCommentTime;
+    private boolean articleCommentStatus;
 
-	public void setArticleCommentID(int articleCommentID) {
-		this.articleCommentID = articleCommentID;
-	}
+    public int getArticleCommentID() {
+        return articleCommentID;
+    }
 
-	public Article getArticleID() {
-		return articleID;
-	}
+    public void setArticleCommentID(int articleCommentID) {
+        this.articleCommentID = articleCommentID;
+    }
 
-	public void setArticleID(Article articleID) {
-		this.articleID = articleID;
-	}
+    public Article getArticleID() {
+        return articleID;
+    }
 
-	public Parent getParentID() {
-		return parentID;
-	}
+    public void setArticleID(Article articleID) {
+        this.articleID = articleID;
+    }
 
-	public void setParentID(Parent parentID) {
-		this.parentID = parentID;
-	}
+    public Parent getParentID() {
+        return parentID;
+    }
 
-	public String getArticleCommentContent() {
-		return articleCommentContent;
-	}
+    public void setParentID(Parent parentID) {
+        this.parentID = parentID;
+    }
 
-	public void setArticleCommentContent(String articleCommentContent) {
-		this.articleCommentContent = articleCommentContent;
-	}
+    public String getArticleCommentContent() {
+        return articleCommentContent;
+    }
 
-	public String getArticleCommentTime() {
-		return articleCommentTime;
-	}
+    public void setArticleCommentContent(String articleCommentContent) {
+        this.articleCommentContent = articleCommentContent;
+    }
 
-	public void setArticleCommentTime(String articleCommentTime) {
-		this.articleCommentTime = articleCommentTime;
-	}
+    public LocalDate getArticleCommentTime() {
+        return articleCommentTime;
+    }
 
-	public boolean isArticleCommentStatus() {
-		return articleCommentStatus;
-	}
+    public void setArticleCommentTime(LocalDate articleCommentTime) {
+        this.articleCommentTime = articleCommentTime;
+    }
 
-	public void setArticleCommentStatus(boolean articleCommentStatus) {
-		this.articleCommentStatus = articleCommentStatus;
-	}
+    public boolean isArticleCommentStatus() {
+        return articleCommentStatus;
+    }
+
+    public void setArticleCommentStatus(boolean articleCommentStatus) {
+        this.articleCommentStatus = articleCommentStatus;
+    }
 
 }

@@ -1,59 +1,71 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class Article {
-	private int articleID;
-	private ArticleType articleTypeID;
-	private String articleTitle;
-	private String articleContent;
-	private String articleCreateTime;
-	private boolean articleStatus;
+    @GeneratedValue
+    @Id
+    private int articleID;
+    @ManyToOne
+    private ArticleType articleTypeID;
 
-	public int getArticleID() {
-		return articleID;
-	}
+    private String articleTitle;
+    private String articleContent;
 
-	public void setArticleID(int articleID) {
-		this.articleID = articleID;
-	}
+    private LocalDate articleCreateTime;
+    private boolean articleStatus;
 
-	public ArticleType getArticleTypeID() {
-		return articleTypeID;
-	}
+    public int getArticleID() {
+        return articleID;
+    }
 
-	public void setArticleTypeID(ArticleType articleTypeID) {
-		this.articleTypeID = articleTypeID;
-	}
+    public void setArticleID(int articleID) {
+        this.articleID = articleID;
+    }
 
-	public String getArticleTitle() {
-		return articleTitle;
-	}
+    public ArticleType getArticleTypeID() {
+        return articleTypeID;
+    }
 
-	public void setArticleTitle(String articleTitle) {
-		this.articleTitle = articleTitle;
-	}
+    public void setArticleTypeID(ArticleType articleTypeID) {
+        this.articleTypeID = articleTypeID;
+    }
 
-	public String getArticleContent() {
-		return articleContent;
-	}
+    public String getArticleTitle() {
+        return articleTitle;
+    }
 
-	public void setArticleContent(String articleContent) {
-		this.articleContent = articleContent;
-	}
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle;
+    }
 
-	public String getArticleCreateTime() {
-		return articleCreateTime;
-	}
+    public String getArticleContent() {
+        return articleContent;
+    }
 
-	public void setArticleCreateTime(String articleCreateTime) {
-		this.articleCreateTime = articleCreateTime;
-	}
+    public void setArticleContent(String articleContent) {
+        this.articleContent = articleContent;
+    }
 
-	public boolean isArticleStatus() {
-		return articleStatus;
-	}
+    public LocalDate getArticleCreateTime() {
+        return articleCreateTime;
+    }
 
-	public void setArticleStatus(boolean articleStatus) {
-		this.articleStatus = articleStatus;
-	}
+    public void setArticleCreateTime(LocalDate articleCreateTime) {
+        this.articleCreateTime = articleCreateTime;
+    }
+
+    public boolean isArticleStatus() {
+        return articleStatus;
+    }
+
+    public void setArticleStatus(boolean articleStatus) {
+        this.articleStatus = articleStatus;
+    }
 
 }

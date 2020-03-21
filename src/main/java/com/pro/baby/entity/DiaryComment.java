@@ -11,90 +11,74 @@ public class DiaryComment {
     @GeneratedValue
     @Id
     private int diaryCommentID;
-    @ManyToOne
-    private Parent parentID;
-    @ManyToOne
-    private Diary diaryID;
 
-    private int parentDiaryCommentID;
     @ManyToOne
-    private Parent parentDiaryCommentParentID;
-
-    private int replyDiaryCommentID;
+    private Parent parent;
     @ManyToOne
-    private Parent replyDiaryCommentParentID;
+    private Diary diary;
 
 
     private boolean commentLevel;
-    private String diaryCommentContent;
 
-    private LocalDate diaryCommentTime;
-    private boolean diaryCommentStatus;
+    private String content;
+
+    private LocalDate commentTime=LocalDate.now();
+    private boolean status=true;
+
+
     public int getDiaryCommentID() {
         return diaryCommentID;
     }
+
     public void setDiaryCommentID(int diaryCommentID) {
         this.diaryCommentID = diaryCommentID;
     }
-    public Parent getParentID() {
-        return parentID;
+
+    public Parent getParent() {
+        return parent;
     }
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
-    public Diary getDiaryID() {
-        return diaryID;
+
+    public Diary getDiary() {
+        return diary;
     }
-    public void setDiaryID(Diary diaryID) {
-        this.diaryID = diaryID;
+
+    public void setDiary(Diary diary) {
+        this.diary = diary;
     }
-    public int getParentDiaryCommentID() {
-        return parentDiaryCommentID;
-    }
-    public void setParentDiaryCommentID(int parentDiaryCommentID) {
-        this.parentDiaryCommentID = parentDiaryCommentID;
-    }
-    public Parent getParentDiaryCommentParentID() {
-        return parentDiaryCommentParentID;
-    }
-    public void setParentDiaryCommentParentID(Parent parentDiaryCommentParentID) {
-        this.parentDiaryCommentParentID = parentDiaryCommentParentID;
-    }
-    public int getReplyDiaryCommentID() {
-        return replyDiaryCommentID;
-    }
-    public void setReplyDiaryCommentID(int replyDiaryCommentID) {
-        this.replyDiaryCommentID = replyDiaryCommentID;
-    }
-    public Parent getReplyDiaryCommentParentID() {
-        return replyDiaryCommentParentID;
-    }
-    public void setReplyDiaryCommentParentID(Parent replyDiaryCommentParentID) {
-        this.replyDiaryCommentParentID = replyDiaryCommentParentID;
-    }
+
     public boolean isCommentLevel() {
         return commentLevel;
     }
+
     public void setCommentLevel(boolean commentLevel) {
         this.commentLevel = commentLevel;
     }
-    public String getDiaryCommentContent() {
-        return diaryCommentContent;
-    }
-    public void setDiaryCommentContent(String diaryCommentContent) {
-        this.diaryCommentContent = diaryCommentContent;
-    }
-    public LocalDate getDiaryCommentTime() {
-        return diaryCommentTime;
-    }
-    public void setDiaryCommentTime(LocalDate diaryCommentTime) {
-        this.diaryCommentTime = diaryCommentTime;
-    }
-    public boolean isDiaryCommentStatus() {
-        return diaryCommentStatus;
-    }
-    public void setDiaryCommentStatus(boolean diaryCommentStatus) {
-        this.diaryCommentStatus = diaryCommentStatus;
+
+    public String getContent() {
+        return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public LocalDate getCommentTime() {
+        return commentTime;
+    }
+
+    public void setCommentTime(LocalDate commentTime) {
+        this.commentTime = commentTime;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

@@ -1,5 +1,7 @@
 package com.pro.baby.entity;
 
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,13 +14,14 @@ public class ArticleComment {
     @Id
     private int articleCommentID;
     @ManyToOne
-    private Article articleID;
+    private Article article;
     @ManyToOne
-    private Parent parentID;
+    private Parent parent;
     private String articleCommentContent;
 
-    private LocalDate articleCommentTime;
-    private boolean articleCommentStatus;
+    private LocalDate commentTime = LocalDate.now();
+    private boolean status = true;
+
 
     public int getArticleCommentID() {
         return articleCommentID;
@@ -28,20 +31,20 @@ public class ArticleComment {
         this.articleCommentID = articleCommentID;
     }
 
-    public Article getArticleID() {
-        return articleID;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setArticleID(Article articleID) {
-        this.articleID = articleID;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public Parent getParentID() {
-        return parentID;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
     public String getArticleCommentContent() {
@@ -52,20 +55,19 @@ public class ArticleComment {
         this.articleCommentContent = articleCommentContent;
     }
 
-    public LocalDate getArticleCommentTime() {
-        return articleCommentTime;
+    public LocalDate getCommentTime() {
+        return commentTime;
     }
 
-    public void setArticleCommentTime(LocalDate articleCommentTime) {
-        this.articleCommentTime = articleCommentTime;
+    public void setCommentTime(LocalDate commentTime) {
+        this.commentTime = commentTime;
     }
 
-    public boolean isArticleCommentStatus() {
-        return articleCommentStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setArticleCommentStatus(boolean articleCommentStatus) {
-        this.articleCommentStatus = articleCommentStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
-
 }

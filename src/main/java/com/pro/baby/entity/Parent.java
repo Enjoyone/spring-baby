@@ -3,37 +3,25 @@ package com.pro.baby.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Parent {
-    @GeneratedValue
     @Id
+    @GeneratedValue
     private int parentID;
 
 
-    private  String parentUserName;
+    private  String username;
     private String pwd;
     private String name;
-    private String sex;
-    private String birth;
+    private String gender;
+    private LocalDate birth;
     private String role;
     private String address;
     private String phone;
-    private int kidNum;
-    private boolean status;
+    private boolean status=true;
 
-    public Parent(String parentUserName) {
-        this.parentUserName = parentUserName;
-    }
-
-
-    public int getKidNum() {
-        return kidNum;
-    }
-
-    public void setKidNum(int kidNum) {
-        this.kidNum = kidNum;
-    }
 
     public int getParentID() {
         return parentID;
@@ -41,6 +29,14 @@ public class Parent {
 
     public void setParentID(int parentID) {
         this.parentID = parentID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPwd() {
@@ -59,19 +55,19 @@ public class Parent {
         this.name = name;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 

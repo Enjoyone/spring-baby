@@ -11,14 +11,18 @@ public class Article {
     @GeneratedValue
     @Id
     private int articleID;
+
     @ManyToOne
-    private ArticleType articleTypeID;
+    private ArticleType articleType;
+
+    @ManyToOne
+    private Parent parent;
 
     private String articleTitle;
     private String articleContent;
 
-    private LocalDate articleCreateTime;
-    private boolean articleStatus;
+    private LocalDate articleCreateTime=LocalDate.now();
+    private boolean status=true;
 
     public int getArticleID() {
         return articleID;
@@ -28,12 +32,20 @@ public class Article {
         this.articleID = articleID;
     }
 
-    public ArticleType getArticleTypeID() {
-        return articleTypeID;
+    public ArticleType getArticleType() {
+        return articleType;
     }
 
-    public void setArticleTypeID(ArticleType articleTypeID) {
-        this.articleTypeID = articleTypeID;
+    public void setArticleType(ArticleType articleType) {
+        this.articleType = articleType;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
     public String getArticleTitle() {
@@ -60,12 +72,11 @@ public class Article {
         this.articleCreateTime = articleCreateTime;
     }
 
-    public boolean isArticleStatus() {
-        return articleStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setArticleStatus(boolean articleStatus) {
-        this.articleStatus = articleStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
-
 }

@@ -13,8 +13,9 @@ public class ArticleType {
 
     private String articleTypeName;
 
-    private LocalDate articleTypeCreateTime;
-    private boolean articleTypeStatus;
+    private LocalDate articleTypeCreateTime=LocalDate.now();
+    private boolean status=true;
+
 
     public int getArticleTypeID() {
         return articleTypeID;
@@ -40,11 +41,11 @@ public class ArticleType {
         this.articleTypeCreateTime = articleTypeCreateTime;
     }
 
-    public boolean isArticleTypeStatus() {
-        return articleTypeStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setArticleTypeStatus(boolean articleTypeStatus) {
-        this.articleTypeStatus = articleTypeStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

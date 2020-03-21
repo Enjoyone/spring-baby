@@ -13,42 +13,51 @@ public class DiaryType {
     private int diaryTypeID;
 
     @ManyToOne
-    private Parent parentID;
+    private Parent parent;
 
     private String diaryTypeName;
 
-    private LocalDate createTime;
-    private boolean diaryTypeStatus;
+    private LocalDate createTime=LocalDate.now();
+    private boolean status=true;
+
+
     public int getDiaryTypeID() {
         return diaryTypeID;
     }
+
     public void setDiaryTypeID(int diaryTypeID) {
         this.diaryTypeID = diaryTypeID;
     }
 
-    public Parent getParentID() {
-        return parentID;
+    public Parent getParent() {
+        return parent;
     }
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
+
     public String getDiaryTypeName() {
         return diaryTypeName;
     }
+
     public void setDiaryTypeName(String diaryTypeName) {
         this.diaryTypeName = diaryTypeName;
     }
+
     public LocalDate getCreateTime() {
         return createTime;
     }
+
     public void setCreateTime(LocalDate createTime) {
         this.createTime = createTime;
     }
-    public boolean isDiaryTypeStatus() {
-        return diaryTypeStatus;
-    }
-    public void setDiaryTypeStatus(boolean diaryTypeStatus) {
-        this.diaryTypeStatus = diaryTypeStatus;
+
+    public boolean isStatus() {
+        return status;
     }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

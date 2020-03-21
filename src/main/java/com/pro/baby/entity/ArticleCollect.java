@@ -12,11 +12,12 @@ public class ArticleCollect {
     @Id
     private int articleCollectID;
     @ManyToOne
-    private Parent parentID;
+    private Parent parent;
     @ManyToOne
-    private Article articleID;
+    private Article article;
 
-    private LocalDate articleCollectTime;
+    private LocalDate articleCollectTime=LocalDate.now();
+
 
     public int getArticleCollectID() {
         return articleCollectID;
@@ -26,20 +27,20 @@ public class ArticleCollect {
         this.articleCollectID = articleCollectID;
     }
 
-    public Parent getParentID() {
-        return parentID;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
-    public Article getArticleID() {
-        return articleID;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setArticleID(Article articleID) {
-        this.articleID = articleID;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
     public LocalDate getArticleCollectTime() {
@@ -49,5 +50,4 @@ public class ArticleCollect {
     public void setArticleCollectTime(LocalDate articleCollectTime) {
         this.articleCollectTime = articleCollectTime;
     }
-
 }

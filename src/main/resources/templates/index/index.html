@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <base href="<%=basePath%>">
@@ -25,8 +25,7 @@
 </head>
 
 <body>
-<div>
-</div>
+    <div th:include="/headerFooter/header :: html"></div>
 
 <!-- Breadcrumb  -->
 <section class="breadcrumb-section">
@@ -153,8 +152,7 @@
     </div>
 </section>
 
-<div>
-    <%@include file="../headerFooter/footer.html"%>
+<div th:include="/headerFooter/footer :: html">
 </div>
 <!-- Include All JavaScript -->
 <script src="js/jquery-3.3.1.min.js"></script>

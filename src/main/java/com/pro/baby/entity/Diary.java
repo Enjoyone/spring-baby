@@ -12,32 +12,16 @@ public class Diary {
     @Id
     private int diaryID;
     @ManyToOne
-    private Parent parentID;
+    private Parent parent;
     @ManyToOne
     private DiaryType diaryType;// id及name
 
     private String diaryTitle;
     private String diaryContent;
 
-    private LocalDate createTime;
-    private int commentNum;
-    private boolean diaryStatus;
+    private LocalDate createTime=LocalDate.now();
+    private boolean status=true;
 
-    public DiaryType getDiaryType() {
-        return diaryType;
-    }
-
-    public void setDiaryType(DiaryType diaryType) {
-        this.diaryType = diaryType;
-    }
-
-    public int getCommentNum() {
-        return commentNum;
-    }
-
-    public void setCommentNum(int commentNum) {
-        this.commentNum = commentNum;
-    }
 
     public int getDiaryID() {
         return diaryID;
@@ -47,14 +31,21 @@ public class Diary {
         this.diaryID = diaryID;
     }
 
-    public Parent getParentID() {
-        return parentID;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
+    public DiaryType getDiaryType() {
+        return diaryType;
+    }
+
+    public void setDiaryType(DiaryType diaryType) {
+        this.diaryType = diaryType;
+    }
 
     public String getDiaryTitle() {
         return diaryTitle;
@@ -80,12 +71,11 @@ public class Diary {
         this.createTime = createTime;
     }
 
-    public boolean isDiaryStatus() {
-        return diaryStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setDiaryStatus(boolean diaryStatus) {
-        this.diaryStatus = diaryStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
-
 }

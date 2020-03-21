@@ -1,4 +1,4 @@
-package com.pro.baby.controller;
+package com.pro.baby.controller.index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Index {
     @RequestMapping("/")
     public String index(){
-        return "index";
+        return "index/index";
     }
 }

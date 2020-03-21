@@ -13,13 +13,14 @@ public class RecommendPlan {
     private int recommendPlanID;
 
     @ManyToOne
-    private Parent parentID;
+    private Parent parent;
 
     private String recommendPlanTitle;
     private String recommendPlanContent;
 
     private LocalDate recommendPlanRemindTime;
-    private boolean recommendPlanStatus;
+    private boolean recommendPlanStatus=true;
+
 
     public int getRecommendPlanID() {
         return recommendPlanID;
@@ -29,12 +30,12 @@ public class RecommendPlan {
         this.recommendPlanID = recommendPlanID;
     }
 
-    public Parent getParentID() {
-        return parentID;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
     public String getRecommendPlanTitle() {

@@ -11,19 +11,23 @@ public class Appoint {
     @GeneratedValue
     @Id
     private int appointID;
+
     @ManyToOne
-    private Parent parentID;
+    private Parent parent;
+
     @ManyToOne
-    private Parent par_parentID;
+    private Parent parent2;
+
+
     private String appointPlace;
 
-
     private LocalDate appointTime;
-    private LocalDate appointCreateTime;
+
+    private LocalDate appointCreateTime=LocalDate.now();
 
     private String appointLevel;
     private String appointComment;
-    private boolean appointStatus;
+    private boolean status=true;
 
     public int getAppointID() {
         return appointID;
@@ -33,20 +37,20 @@ public class Appoint {
         this.appointID = appointID;
     }
 
-    public Parent getParentID() {
-        return parentID;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setParentID(Parent parentID) {
-        this.parentID = parentID;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
-    public Parent getPar_parentID() {
-        return par_parentID;
+    public Parent getParent2() {
+        return parent2;
     }
 
-    public void setPar_parentID(Parent par_parentID) {
-        this.par_parentID = par_parentID;
+    public void setParent2(Parent parent2) {
+        this.parent2 = parent2;
     }
 
     public String getAppointPlace() {
@@ -89,12 +93,11 @@ public class Appoint {
         this.appointComment = appointComment;
     }
 
-    public boolean isAppointStatus() {
-        return appointStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setAppointStatus(boolean appointStatus) {
-        this.appointStatus = appointStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
-
 }

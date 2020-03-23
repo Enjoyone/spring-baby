@@ -1,20 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <base href="<%=basePath%>">
     <meta charset="utf-8">
-    <title>write</title>
+    <title>diaryWrite</title>
 
-    <link rel="stylesheet" href="static/css/magnific-popup.css">
-    <link rel="stylesheet" href="static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/animate.css">
-    <link rel="stylesheet" href="static/css/fonts.css">
-    <link rel="stylesheet" href="static/css/preset.css">
-    <link rel="stylesheet" href="static/otherCss/style.css">
-    <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/preset.css">
+    <link rel="stylesheet" href="otherCss/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
 
-    <link rel="stylesheet" href="../../static/diary/diaryWrite.css">
+    <link rel="stylesheet" href="diary/diaryWrite.css">
 
 </head>
 
@@ -25,7 +27,7 @@
 <div class="container container-write">
     <!-- 提示 -->
     <div class="result alert-info"></div>
-    <form class="form-group write-form" action="write" method="post">
+    <form class="form-group write-form" action="/addDiary" method="post">
         <div class="input-group">
 
             <label for="article_title">日记标题： <input type="text"
@@ -112,16 +114,16 @@
 <div>
 </div>
 <!-- Include All JavaScript -->
-<script src="static/js/jquery-3.3.1.min.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
-<script src="static/js/mixIt.js"></script>
-<script src="static/js/jquery.magnific-popup.min.js"></script>
-<script src="static/js/main.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/mixIt.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/main.js"></script>
 
 
-<script src="../../static/diary/diaryWrite.js"></script>
-<script src="static/editor/wangEditor.min.js"></script>
-<script src="../../static/diary/editor.js"></script>
+<script src="diary/diaryWrite.js"></script>
+<script src="editor/wangEditor.min.js"></script>
+<script src="diary/editor.js"></script>
 
 </body>
 

@@ -14,6 +14,7 @@ public class Parent {
 
     private  String userName;
     private String pwd;
+
     private String name;
     private String gender;
     private LocalDate birth;

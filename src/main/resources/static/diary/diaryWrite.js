@@ -123,10 +123,10 @@ $(function() {
 				} else {
 					$(".type-warning").hide();
 					$.ajax({
-						type : "post",
-						url : "addArticleType",
+						type : "get",
+						url : "addDiaryType",
 						data : {
-							articleTypeName : con
+							diaryTypeName : con
 						},
 						datatype : "json",
 						success : function(data) {

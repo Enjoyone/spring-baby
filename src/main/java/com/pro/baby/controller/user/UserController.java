@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @SessionAttributes(value = "parent")
@@ -26,12 +27,13 @@ public class UserController {
         return "loginRegister/register";
     }
 
+
     @PostMapping("register")
-    public String addUser(@ModelAttribute("parent") Parent parent) {
+    public String addUser(@ModelAttribute("parent1") Parent parent) {
         Parent parent1 = userService.addUser(parent);
+
         return "loginRegister/success";
     }
-
 
     //    登录
     @GetMapping("/login")
@@ -39,14 +41,19 @@ public class UserController {
         return "loginRegister/login";
     }
     @PostMapping("/login")
-    public String login(Model model, String userName, String pwd) {
+    public String login(Model model, String userName, String pwd, RedirectAttributes redirectAttributes) {
+        System.out.println("controller:"+userName);
         Parent parent = userService.loginCheck(userName, pwd);
+        System.out.println("controller get:"+parent.getUserName());
         if (parent != null) {
             model.addAttribute("parent", parent);
-            return "forward:index/index";
+
+
+            return "forward:/";
 
         } else {
-            return "redirect:index/index";
+            redirectAttributes.addFlashAttribute("error","账号或密码错误！");
+            return "redirect:login";
         }
 
     }

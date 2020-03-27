@@ -21,6 +21,7 @@ public class Parent {
     private String role;
     private String address;
     private String phone;
+    private LocalDate registerTime=LocalDate.now();
     private boolean status=true;
 
 
@@ -96,6 +97,14 @@ public class Parent {
         this.phone = phone;
     }
 
+    public LocalDate getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(LocalDate registerTime) {
+        this.registerTime = registerTime;
+    }
+
     public boolean isStatus() {
         return status;
     }
@@ -103,4 +112,5 @@ public class Parent {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
 }

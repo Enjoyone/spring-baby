@@ -9,7 +9,7 @@
 }
 
 /*标题*/
-input[name="article_title"]{
+input[name="diaryTitle"]{
     border-top: none;
     border-left: none;
     border-right: none;

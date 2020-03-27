@@ -1,7 +1,7 @@
 // article_oprate
 $(function() {
 	// title 字数
-	$("#article_title").bind("keyup", function() {
+	$("#diaryTitle").bind("keyup", function() {
 		$(this).val($(this).val().substring(0, $(".title-max-words").text()));
 		$(".title-words").html($(this).val().length);
 		if ($(this).val().length >= $(".title-max-words").text()) {
@@ -11,7 +11,7 @@ $(function() {
 		}
 	});
 	// 字数 初始化
-	$(".title-words").html($("#article_title").val().length);
+	$(".title-words").html($("#diaryTitle").val().length);
 
 	// 初始化
 	$(".article_oprate input[type=checkbox]").prop("checked", true);
@@ -83,13 +83,13 @@ $(function() {
 
 $(function() {
 	var typeNum = 0;
-	$('[name="article_type"]').each(function() {
+	$('[name="diaryType"]').each(function() {
 		$(this).children("option").each(function() {
 			typeNum = typeNum + 1;
 		});
 	});
 	if (typeNum > 2) {
-		$('[name="article_type"]').change(function() {
+		$('[name="diaryType"]').change(function() {
 			var data = $(this).val();
 			if (data === "0") {
 				$(".add-articleType").show();
@@ -108,7 +108,7 @@ $(function() {
 			function() {
 				var eq = false;
 				var con = $('[name="new_type_name"]').val();
-				$('[name="article_type"]').each(function() {
+				$('[name="diaryType"]').each(function() {
 					$(this).children("option").each(function() {
 						var n = $(this).text(); // 每一个option
 						if (n === con) {
@@ -141,10 +141,10 @@ $(function() {
 								$(".add-articleType").hide();
 								// 刷新文章类型
 
-								$('[name="article_type"]').prepend(
+								$('[name="diaryType"]').prepend(
 										"<option value='" + data + "'>" + con
 												+ "</option>");
-								$('[name="article_type"]').val(data);
+								$('[name="diaryType"]').val(data);
 								$(".add-articleType").hide();
 
 							} else {
@@ -158,66 +158,47 @@ $(function() {
 });
 
 // 提交验证
+// 提交验证
 
-$(function() {
+$(function () {
 
-	function artilceData(articleDraft) {
-		var articleID = $(".articleID").text();
-		var article_title = $('[name="article_title"]');
-		var articleType = $('[name="article_type"]');
-		// var article_con = $('#article_con');
-
-		var a = new Array();
-
-		$('[name="operateType"]:checked').each(function() {
-			a.push(parseInt($(this).val()));
-		});
-
-		var article = {
-			articleID : articleID,
-			articleTitle : article_title.val(),
-			articleType : articleType.val(),
-			articleContent : $("#article_con2").val(),
-
-		}
-		var jsonData = JSON.stringify(article);
-
-		return jsonData;
-	}
-	;
 
 	// 1. 立即提交
-	$(".submit-button").click(function() {
-		ajaxArticle("0");
-	});
+	$(".submit-button").click(function () {
+		// console.log("11");
+		// ajaxArticle("0");
 
-	function ajaxArticle(isdraft) {
-		var isExited = $(".isExited").text();
-		if(isExited==1){
-			isExited="1";
-		}
-		console.log(isExited);
-		var jsonData = artilceData(isdraft);
+		var diaryTitle = $('[name="diaryTitle"]').val();
+		var diaryType = $('[name="diaryType"]').val();
+		var diaryContent = $('#content').val();
+
+
+		console.log(diaryTitle);
+		console.log(diaryType);
+		console.log(diaryContent);
+
+
 		$.ajax({
-			type : "post",
-			url : "write",
-			data : {
-				isExited : isExited,
-				article : jsonData
+			type: "post",
+			url: "writeDiary",
+			data: {
+				diaryTitle: diaryTitle,
+				diaryType: diaryType,
+				diaryContent: diaryContent,
 			},
-			datatype : "json",
-			success : function(data) {
+			datatype: "json",
+			success: function (data) {
 				// -1 保存失败 1 show article 0 back userCenter
 				console.log(data);
-				if (data!=0&&data!=-1) {
+				if (data != 0 && data != -1) {
 					$(".result").show();
 					$(".result").html("保存成功！");
 					var sec = 2;
-					setInterval(function() {
+					setInterval(function () {
 						sec--;
 						if (sec < 0) {
-							window.location.href = "articleShow?articleID="
-									+ data;
+							window.location.href = "showDiary?diaryID="
+								+ data;
 						}
 					}, 1000);
 
@@ -226,7 +207,7 @@ $(function() {
 					$(".result").show();
 					$(".result").html("保存成功！");
 					var sec = 2;
-					setInterval(function() {
+					setInterval(function () {
 						sec--;
 						if (sec < 0) {
 							window.location.href = "userCenter";
@@ -239,7 +220,7 @@ $(function() {
 					$(".result").html("保存失败！");
 
 					var sec = 3;
-					setInterval(function() {
+					setInterval(function () {
 						sec--;
 						if (sec < 0) {
 							$(".result").hide();
@@ -250,6 +231,8 @@ $(function() {
 
 			}
 		});
-	}
+
+
+	});
 
 });

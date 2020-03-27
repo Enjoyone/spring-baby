@@ -1,17 +1,14 @@
 package com.pro.baby.controller.diary;
 
-import com.pro.baby.entity.ArticleType;
 import com.pro.baby.entity.Diary;
 import com.pro.baby.entity.DiaryType;
 import com.pro.baby.entity.Parent;
 import com.pro.baby.service.diary.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -27,33 +24,48 @@ public class DiaryController {
     public String community() {
 //        数据
 
+
         return "diary/community";
     }
 
 
 //写日记
 
-    @GetMapping("/addDiary")
-    public String toAddDiary(HttpServletRequest request) {
-        HttpSession httpSession=request.getSession();
-        Parent parent= (Parent) httpSession.getAttribute("parent");
-        System.out.println("adddiary:"+parent.getUserName());
+    @GetMapping("/writeDiary")
+    public String toAddDiary(Model model, HttpSession session) {
+        Parent parent = (Parent) session.getAttribute("parent");
         List<DiaryType> diaryTypes = diaryService.backDiaryTypes(parent.getParentID());
+        model.addAttribute("diaryTypes", diaryTypes);
+
         return "diary/diaryWrite";
     }
 
-    @PostMapping("/addDiary")
-    public String addDiary(Model model, Diary diary) {
-        int diaryID = diaryService.addDiary(diary);
-        model.addAttribute("diaryID", diaryID);
-        return "forward:diaryShow";
+
+    @PostMapping("/writeDiary")
+    @ResponseBody
+    public int addDiary(String diaryTitle, String diaryContent, int diaryType, HttpSession session) {
+
+        Parent parent = (Parent) session.getAttribute("parent");
+
+        DiaryType diaryType1 = diaryService.getOne(diaryType);
+
+        Diary diary = new Diary();
+        diary.setDiaryTitle(diaryTitle);
+        diary.setDiaryContent(diaryContent);
+
+        diary.setParent(parent);
+        diary.setDiaryType(diaryType1);
+
+        return diaryService.addDiary(diary);
     }
 
 
     //    展示日记
-    @GetMapping("/diaryShow")
-    public String diaryShow(int diaryID) {
+    @GetMapping("/showDiary")
+    public String diaryShow(int diaryID, Model model) {
         Diary diary = diaryService.diaryShow(diaryID);
+        model.addAttribute("diary", diary);
+
         return "diary/diaryShow";
     }
 
@@ -68,7 +80,22 @@ public class DiaryController {
 //    1 添加
     @GetMapping("/addDiaryType")
     @ResponseBody
-    public DiaryType addDiaryType(DiaryType diaryType) {
-        return diaryService.addDiaryType(diaryType);
+    public String addDiaryType(DiaryType diaryType, HttpSession session) {
+        Parent parent = (Parent) session.getAttribute("parent");
+        diaryType.setParent(parent);
+
+        diaryService.addDiaryType(diaryType);
+
+        return "1";//  判断（后期）
     }
+
+
+//    @GetMapping("/showType")
+//    @ResponseBody
+//    public String showType() {
+//        List<DiaryType> diaryTypes = diaryService.showAllTypes();
+//        return "showType";
+//    }
+
+
 }

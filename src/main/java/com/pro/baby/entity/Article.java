@@ -15,9 +15,6 @@ public class Article {
     @ManyToOne
     private ArticleType articleType;
 
-    @ManyToOne
-    private Parent parent;
-
     private String articleTitle;
     private String articleContent;
 
@@ -38,14 +35,6 @@ public class Article {
 
     public void setArticleType(ArticleType articleType) {
         this.articleType = articleType;
-    }
-
-    public Parent getParent() {
-        return parent;
-    }
-
-    public void setParent(Parent parent) {
-        this.parent = parent;
     }
 
     public String getArticleTitle() {

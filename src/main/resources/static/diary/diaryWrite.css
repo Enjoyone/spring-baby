@@ -23,7 +23,7 @@ input[name="diaryTitle"]{
 	font-size: 25px;
     padding-top: 20px;
 }
-#article_con{
+#edit{
    border: 1px solid #ccc;
    min-height: 300px;
 }

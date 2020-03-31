@@ -19,15 +19,12 @@ public class FinalAppoint {
     private Set<Parent> parents=new HashSet<>();
 
     @OneToMany
-    private Set<Kid> kids=new HashSet<Kid>();
+    private Set<Kid> kids=new HashSet<>();
 
+    @OneToOne
+    private AppTime appTime;
 
-    private String appointPlace;
-
-
-    private LocalDateTime appointTime;
-
-    private LocalDate appointCreateTime=LocalDate.now();
+    private LocalDateTime appointCreateTime=LocalDateTime.now();
 
     private String appointLevel;
     private String appointComment;
@@ -66,27 +63,19 @@ public class FinalAppoint {
         this.kids = kids;
     }
 
-    public String getAppointPlace() {
-        return appointPlace;
+    public AppTime getAppTime() {
+        return appTime;
     }
 
-    public void setAppointPlace(String appointPlace) {
-        this.appointPlace = appointPlace;
+    public void setAppTime(AppTime appTime) {
+        this.appTime = appTime;
     }
 
-    public LocalDateTime getAppointTime() {
-        return appointTime;
-    }
-
-    public void setAppointTime(LocalDateTime appointTime) {
-        this.appointTime = appointTime;
-    }
-
-    public LocalDate getAppointCreateTime() {
+    public LocalDateTime getAppointCreateTime() {
         return appointCreateTime;
     }
 
-    public void setAppointCreateTime(LocalDate appointCreateTime) {
+    public void setAppointCreateTime(LocalDateTime appointCreateTime) {
         this.appointCreateTime = appointCreateTime;
     }
 

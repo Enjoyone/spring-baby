@@ -3,6 +3,7 @@ package com.pro.baby.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -19,7 +20,11 @@ public class Parent {
     private String gender;
     private LocalDate birth;
     private String role;
-    private String address;
+
+    @OneToOne
+    private Address address;
+
+
     private String phone;
     private LocalDate registerTime=LocalDate.now();
     private boolean status=true;
@@ -81,11 +86,11 @@ public class Parent {
         this.role = role;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

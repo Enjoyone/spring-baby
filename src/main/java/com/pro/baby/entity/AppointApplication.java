@@ -1,7 +1,6 @@
 package com.pro.baby.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,10 +14,11 @@ public class AppointApplication {
     @ManyToOne
     private Parent parent;
 
+    @OneToOne
+    private Address address;
 
-    private  LocalDate startTime;
-
-    private  LocalDate stopTime;
+    @OneToOne
+    private AppTime appTime;
 
     private String time;
 
@@ -44,20 +44,19 @@ public class AppointApplication {
         this.parent = parent;
     }
 
-    public LocalDate getStartTime() {
-        return startTime;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setStartTime(LocalDate startTime) {
-        this.startTime = startTime;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    public AppTime getAppTime() {
+        return appTime;
     }
 
-    public LocalDate getStopTime() {
-        return stopTime;
-    }
-
-    public void setStopTime(LocalDate stopTime) {
-        this.stopTime = stopTime;
+    public void setAppTime(AppTime appTime) {
+        this.appTime = appTime;
     }
 
     public String getTime() {

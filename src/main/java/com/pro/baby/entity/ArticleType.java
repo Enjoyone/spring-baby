@@ -1,40 +1,52 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class ArticleType {
-	private int articleTypeID;
-	private String articleTypeName;
-	private String articleTypeCreateTime;
-	private boolean articleTypeStatus;
+    @GeneratedValue
+    @Id
+    private int articleTypeID;
 
-	public int getArticleTypeID() {
-		return articleTypeID;
-	}
+    private String articleTypeName;
 
-	public void setArticleTypeID(int articleTypeID) {
-		this.articleTypeID = articleTypeID;
-	}
+    private LocalDate articleTypeCreateTime=LocalDate.now();
+    private boolean status=true;
 
-	public String getArticleTypeName() {
-		return articleTypeName;
-	}
 
-	public void setArticleTypeName(String articleTypeName) {
-		this.articleTypeName = articleTypeName;
-	}
+    public int getArticleTypeID() {
+        return articleTypeID;
+    }
 
-	public String getArticleTypeCreateTime() {
-		return articleTypeCreateTime;
-	}
+    public void setArticleTypeID(int articleTypeID) {
+        this.articleTypeID = articleTypeID;
+    }
 
-	public void setArticleTypeCreateTime(String articleTypeCreateTime) {
-		this.articleTypeCreateTime = articleTypeCreateTime;
-	}
+    public String getArticleTypeName() {
+        return articleTypeName;
+    }
 
-	public boolean isArticleTypeStatus() {
-		return articleTypeStatus;
-	}
+    public void setArticleTypeName(String articleTypeName) {
+        this.articleTypeName = articleTypeName;
+    }
 
-	public void setArticleTypeStatus(boolean articleTypeStatus) {
-		this.articleTypeStatus = articleTypeStatus;
-	}
+    public LocalDate getArticleTypeCreateTime() {
+        return articleTypeCreateTime;
+    }
+
+    public void setArticleTypeCreateTime(LocalDate articleTypeCreateTime) {
+        this.articleTypeCreateTime = articleTypeCreateTime;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

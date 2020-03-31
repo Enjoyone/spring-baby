@@ -1,57 +1,71 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 
+@Entity
 public class Kid {
-	private int kidID;
-	private Parent parentID;
-	private String kidName;
-	private String kidsex;
-	private String kidBirth;
-	private boolean kidSocialStatus;
-	private boolean kidStatus;
-	public int getKidID() {
-		return kidID;
-	}
-	public void setKidID(int kidID) {
-		this.kidID = kidID;
-	}
-	public Parent getParentID() {
-		return parentID;
-	}
-	public void setParentID(Parent parentID) {
-		this.parentID = parentID;
-	}
-	public String getKidName() {
-		return kidName;
-	}
-	public void setKidName(String kidName) {
-		this.kidName = kidName;
-	}
-	public String getKidsex() {
-		return kidsex;
-	}
-	public void setKidsex(String kidsex) {
-		this.kidsex = kidsex;
-	}
-	public String getKidBirth() {
-		return kidBirth;
-	}
-	public void setKidBirth(String kidBirth) {
-		this.kidBirth = kidBirth;
-	}
-	public boolean isKidSocialStatus() {
-		return kidSocialStatus;
-	}
-	public void setKidSocialStatus(boolean kidSocialStatus) {
-		this.kidSocialStatus = kidSocialStatus;
-	}
-	public boolean isKidStatus() {
-		return kidStatus;
-	}
-	public void setKidStatus(boolean kidStatus) {
-		this.kidStatus = kidStatus;
-	}
-	
-	
-	
+    @GeneratedValue
+    @Id
+    private int kidID;
+
+    @ManyToOne
+    private Parent parent;
+
+    private String name;
+    private String gender;
+    private LocalDate birth;
+    private boolean status = true;
+
+
+    public int getKidID() {
+        return kidID;
+    }
+
+    public void setKidID(int kidID) {
+        this.kidID = kidID;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

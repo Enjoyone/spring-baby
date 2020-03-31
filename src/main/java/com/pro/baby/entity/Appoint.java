@@ -1,86 +1,103 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class Appoint {
-	private int appointID;
-	private Parent parentID;
-	private Parent par_parentID;
-	private String appointPlace;
-	private String appointTime;
-	private String appointCreateTime;
-	private String appointLevel;
-	private String appointComment;
-	private boolean appointStatus;
+    @GeneratedValue
+    @Id
+    private int appointID;
 
-	public int getAppointID() {
-		return appointID;
-	}
+    @ManyToOne
+    private Parent parent;
 
-	public void setAppointID(int appointID) {
-		this.appointID = appointID;
-	}
+    @ManyToOne
+    private Parent parent2;
 
-	public Parent getParentID() {
-		return parentID;
-	}
 
-	public void setParentID(Parent parentID) {
-		this.parentID = parentID;
-	}
+    private String appointPlace;
 
-	public Parent getPar_parentID() {
-		return par_parentID;
-	}
+    private LocalDate appointTime;
 
-	public void setPar_parentID(Parent par_parentID) {
-		this.par_parentID = par_parentID;
-	}
+    private LocalDate appointCreateTime=LocalDate.now();
 
-	public String getAppointPlace() {
-		return appointPlace;
-	}
+    private String appointLevel;
+    private String appointComment;
+    private boolean status=true;
 
-	public void setAppointPlace(String appointPlace) {
-		this.appointPlace = appointPlace;
-	}
+    public int getAppointID() {
+        return appointID;
+    }
 
-	public String getAppointTime() {
-		return appointTime;
-	}
+    public void setAppointID(int appointID) {
+        this.appointID = appointID;
+    }
 
-	public void setAppointTime(String appointTime) {
-		this.appointTime = appointTime;
-	}
+    public Parent getParent() {
+        return parent;
+    }
 
-	public String getAppointCreateTime() {
-		return appointCreateTime;
-	}
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 
-	public void setAppointCreateTime(String appointCreateTime) {
-		this.appointCreateTime = appointCreateTime;
-	}
+    public Parent getParent2() {
+        return parent2;
+    }
 
-	public String getAppointLevel() {
-		return appointLevel;
-	}
+    public void setParent2(Parent parent2) {
+        this.parent2 = parent2;
+    }
 
-	public void setAppointLevel(String appointLevel) {
-		this.appointLevel = appointLevel;
-	}
+    public String getAppointPlace() {
+        return appointPlace;
+    }
 
-	public String getAppointComment() {
-		return appointComment;
-	}
+    public void setAppointPlace(String appointPlace) {
+        this.appointPlace = appointPlace;
+    }
 
-	public void setAppointComment(String appointComment) {
-		this.appointComment = appointComment;
-	}
+    public LocalDate getAppointTime() {
+        return appointTime;
+    }
 
-	public boolean isAppointStatus() {
-		return appointStatus;
-	}
+    public void setAppointTime(LocalDate appointTime) {
+        this.appointTime = appointTime;
+    }
 
-	public void setAppointStatus(boolean appointStatus) {
-		this.appointStatus = appointStatus;
-	}
+    public LocalDate getAppointCreateTime() {
+        return appointCreateTime;
+    }
 
+    public void setAppointCreateTime(LocalDate appointCreateTime) {
+        this.appointCreateTime = appointCreateTime;
+    }
+
+    public String getAppointLevel() {
+        return appointLevel;
+    }
+
+    public void setAppointLevel(String appointLevel) {
+        this.appointLevel = appointLevel;
+    }
+
+    public String getAppointComment() {
+        return appointComment;
+    }
+
+    public void setAppointComment(String appointComment) {
+        this.appointComment = appointComment;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

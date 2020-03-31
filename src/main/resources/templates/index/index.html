@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <base href="<%=basePath%>">
@@ -9,10 +9,10 @@
 
     <!-- Include All Css -->
     <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/fonts.css">
+<!--    <link rel="stylesheet" href="css/fonts.css">-->
     <link rel="stylesheet" href="css/preset.css">
     <link rel="stylesheet" href="css/responsive.css">
 
@@ -25,8 +25,7 @@
 </head>
 
 <body>
-<div>
-</div>
+    <div th:include="/headerFooter/header :: html"></div>
 
 <!-- Breadcrumb  -->
 <section class="breadcrumb-section">
@@ -39,13 +38,13 @@
                             <div>Play!</div>
                             <div class="two">
                                 <img src="images/index/map.png" alt=""> <a
-                                    href="kidSocial">儿童社交</a>
+                                    href="/social">儿童社交</a>
                             </div>
                         </div>
                         <div>
                             <div>Share!</div>
                             <div class="two">
-                                <a href="community">日记社区</a>
+                                <a href="/community">日记社区</a>
                             </div>
                         </div>
                     </div>
@@ -55,6 +54,8 @@
     </div>
 </section>
 <!-- /.breadcrumb-section  -->
+
+
 
 <!-- Classes Section -->
 <section class="classes-section-2">
@@ -153,8 +154,7 @@
     </div>
 </section>
 
-<div>
-    <%@include file="../headerFooter/footer.html"%>
+<div th:include="/headerFooter/footer :: html">
 </div>
 <!-- Include All JavaScript -->
 <script src="js/jquery-3.3.1.min.js"></script>

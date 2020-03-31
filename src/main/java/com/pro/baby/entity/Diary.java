@@ -1,78 +1,81 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class Diary {
-	private int diaryID;
-	private Parent parentID;
-	private DiaryType diaryType;// id及name
-	private String diaryTitle;
-	private String diaryContent;
-	private String createTime;
-	private int commentNum;
-	private boolean diaryStatus;
+    @GeneratedValue
+    @Id
+    private int diaryID;
+    @ManyToOne
+    private Parent parent;
+    @ManyToOne
+    private DiaryType diaryType;// id及name
 
-	public DiaryType getDiaryType() {
-		return diaryType;
-	}
+    private String diaryTitle;
+    private String diaryContent;
 
-	public void setDiaryType(DiaryType diaryType) {
-		this.diaryType = diaryType;
-	}
+    private LocalDate createTime=LocalDate.now();
+    private boolean status=true;
 
-	public int getCommentNum() {
-		return commentNum;
-	}
 
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
+    public int getDiaryID() {
+        return diaryID;
+    }
 
-	public int getDiaryID() {
-		return diaryID;
-	}
+    public void setDiaryID(int diaryID) {
+        this.diaryID = diaryID;
+    }
 
-	public void setDiaryID(int diaryID) {
-		this.diaryID = diaryID;
-	}
+    public Parent getParent() {
+        return parent;
+    }
 
-	public Parent getParentID() {
-		return parentID;
-	}
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 
-	public void setParentID(Parent parentID) {
-		this.parentID = parentID;
-	}
+    public DiaryType getDiaryType() {
+        return diaryType;
+    }
 
-	
-	public String getDiaryTitle() {
-		return diaryTitle;
-	}
+    public void setDiaryType(DiaryType diaryType) {
+        this.diaryType = diaryType;
+    }
 
-	public void setDiaryTitle(String diaryTitle) {
-		this.diaryTitle = diaryTitle;
-	}
+    public String getDiaryTitle() {
+        return diaryTitle;
+    }
 
-	public String getDiaryContent() {
-		return diaryContent;
-	}
+    public void setDiaryTitle(String diaryTitle) {
+        this.diaryTitle = diaryTitle;
+    }
 
-	public void setDiaryContent(String diaryContent) {
-		this.diaryContent = diaryContent;
-	}
+    public String getDiaryContent() {
+        return diaryContent;
+    }
 
-	public String getCreateTime() {
-		return createTime;
-	}
+    public void setDiaryContent(String diaryContent) {
+        this.diaryContent = diaryContent;
+    }
 
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
-	}
+    public LocalDate getCreateTime() {
+        return createTime;
+    }
 
-	public boolean isDiaryStatus() {
-		return diaryStatus;
-	}
+    public void setCreateTime(LocalDate createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setDiaryStatus(boolean diaryStatus) {
-		this.diaryStatus = diaryStatus;
-	}
+    public boolean isStatus() {
+        return status;
+    }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

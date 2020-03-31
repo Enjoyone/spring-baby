@@ -1,41 +1,53 @@
-package com.baby.entity;
+package com.pro.baby.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+
+@Entity
 public class ArticleCollect {
-	private int articleCollectID;
-	private Parent parentID;
-	private Article articleID;
-	private String articleCollectTime;
+    @GeneratedValue
+    @Id
+    private int articleCollectID;
+    @ManyToOne
+    private Parent parent;
+    @ManyToOne
+    private Article article;
 
-	public int getArticleCollectID() {
-		return articleCollectID;
-	}
+    private LocalDate articleCollectTime=LocalDate.now();
 
-	public void setArticleCollectID(int articleCollectID) {
-		this.articleCollectID = articleCollectID;
-	}
 
-	public Parent getParentID() {
-		return parentID;
-	}
+    public int getArticleCollectID() {
+        return articleCollectID;
+    }
 
-	public void setParentID(Parent parentID) {
-		this.parentID = parentID;
-	}
+    public void setArticleCollectID(int articleCollectID) {
+        this.articleCollectID = articleCollectID;
+    }
 
-	public Article getArticleID() {
-		return articleID;
-	}
+    public Parent getParent() {
+        return parent;
+    }
 
-	public void setArticleID(Article articleID) {
-		this.articleID = articleID;
-	}
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 
-	public String getArticleCollectTime() {
-		return articleCollectTime;
-	}
+    public Article getArticle() {
+        return article;
+    }
 
-	public void setArticleCollectTime(String articleCollectTime) {
-		this.articleCollectTime = articleCollectTime;
-	}
+    public void setArticle(Article article) {
+        this.article = article;
+    }
 
+    public LocalDate getArticleCollectTime() {
+        return articleCollectTime;
+    }
+
+    public void setArticleCollectTime(LocalDate articleCollectTime) {
+        this.articleCollectTime = articleCollectTime;
+    }
 }

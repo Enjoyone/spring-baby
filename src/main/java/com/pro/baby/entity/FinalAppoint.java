@@ -1,27 +1,31 @@
 package com.pro.baby.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Appoint {
+public class FinalAppoint {
     @GeneratedValue
     @Id
-    private int appointID;
+    private int finalAppointID;
 
-    @ManyToOne
-    private Parent parent;
+    @OneToOne
+    private AppointApplication appointApplication;
 
-    @ManyToOne
-    private Parent parent2;
+    @OneToMany
+    private Set<Parent> parents=new HashSet<>();
+
+    @OneToMany
+    private Set<Kid> kids=new HashSet<Kid>();
 
 
     private String appointPlace;
 
-    private LocalDate appointTime;
+
+    private LocalDateTime appointTime;
 
     private LocalDate appointCreateTime=LocalDate.now();
 
@@ -29,28 +33,37 @@ public class Appoint {
     private String appointComment;
     private boolean status=true;
 
-    public int getAppointID() {
-        return appointID;
+
+    public int getFinalAppointID() {
+        return finalAppointID;
     }
 
-    public void setAppointID(int appointID) {
-        this.appointID = appointID;
+    public void setFinalAppointID(int finalAppointID) {
+        this.finalAppointID = finalAppointID;
     }
 
-    public Parent getParent() {
-        return parent;
+    public AppointApplication getAppointApplication() {
+        return appointApplication;
     }
 
-    public void setParent(Parent parent) {
-        this.parent = parent;
+    public void setAppointApplication(AppointApplication appointApplication) {
+        this.appointApplication = appointApplication;
     }
 
-    public Parent getParent2() {
-        return parent2;
+    public Set<Parent> getParents() {
+        return parents;
     }
 
-    public void setParent2(Parent parent2) {
-        this.parent2 = parent2;
+    public void setParents(Set<Parent> parents) {
+        this.parents = parents;
+    }
+
+    public Set<Kid> getKids() {
+        return kids;
+    }
+
+    public void setKids(Set<Kid> kids) {
+        this.kids = kids;
     }
 
     public String getAppointPlace() {
@@ -61,11 +74,11 @@ public class Appoint {
         this.appointPlace = appointPlace;
     }
 
-    public LocalDate getAppointTime() {
+    public LocalDateTime getAppointTime() {
         return appointTime;
     }
 
-    public void setAppointTime(LocalDate appointTime) {
+    public void setAppointTime(LocalDateTime appointTime) {
         this.appointTime = appointTime;
     }
 

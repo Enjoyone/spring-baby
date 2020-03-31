@@ -18,7 +18,8 @@ layui.use('laydate', function () {
     type: 'time',
     min: '09:30:00',
     max: '17:30:00',
-    btns: ['clear', 'confirm']
+    btns: ['clear', 'confirm'],
+    range: true,
   });
 
 });

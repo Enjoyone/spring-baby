@@ -28,4 +28,14 @@ public class AdminController {
         }else
             return  "redirect:adminLogin";
     }
+
+
+    @GetMapping("/adminAffair")
+    public void adminAffair(String operateType){
+        if(operateType.equals("userStatus")){
+
+        }
+    }
+
+
 }

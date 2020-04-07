@@ -1,14 +1,15 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%> --%>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-
-	<div class="header  bg-dark">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="admin/common/common.css">
+	<link rel="stylesheet" href="admin/message/index/index.css">
+</head>
+<body>
+<div class="header  bg-dark" th:fragment="rightHeader" >
 		<div class="header-left">
 			<nav class="navbar navbar-expand-sm navbar-dark"> <span
 				class="change-icon"></span>
@@ -39,6 +40,6 @@
 			</nav>
 		</div>
 	</div>
-
+</body>
 
 

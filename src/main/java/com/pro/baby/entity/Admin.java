@@ -11,6 +11,7 @@ public class Admin {
     @Id
     @GeneratedValue
     private String adminID;
+
     private String userName;
     private String pwd;
     private String name;

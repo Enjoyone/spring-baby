@@ -9,7 +9,7 @@ public class AppointApplication {
 
     @Id
     @GeneratedValue
-    private  int AppointApplicationID;
+    private int AppointApplicationID;
 
     @ManyToOne
     private Parent parent;
@@ -20,12 +20,11 @@ public class AppointApplication {
     @OneToOne
     private AppTime appTime;
 
-    private String time;
-
-    private boolean status=true;
-
     @OneToMany
-    private Set<Kid> kids=new HashSet<>();
+    private Set<Kid> kids = new HashSet<>();
+
+    private String ps;
+    private boolean status = true;
 
 
     public int getAppointApplicationID() {
@@ -51,20 +50,13 @@ public class AppointApplication {
     public void setAddress(Address address) {
         this.address = address;
     }
+
     public AppTime getAppTime() {
         return appTime;
     }
 
     public void setAppTime(AppTime appTime) {
         this.appTime = appTime;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public boolean isStatus() {
@@ -81,5 +73,13 @@ public class AppointApplication {
 
     public void setKids(Set<Kid> kids) {
         this.kids = kids;
+    }
+
+    public String getPs() {
+        return ps;
+    }
+
+    public void setPs(String ps) {
+        this.ps = ps;
     }
 }

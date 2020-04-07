@@ -16,7 +16,7 @@ public class Address {
 
     private String city;
 
-    private String county;
+    private String district;
 
     private String details;
 
@@ -45,12 +45,12 @@ public class Address {
         this.city = city;
     }
 
-    public String getCounty() {
-        return county;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getDetails() {

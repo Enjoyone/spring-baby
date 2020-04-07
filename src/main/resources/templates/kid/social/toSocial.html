@@ -44,7 +44,7 @@
         <span>adsd</span>
     </div>
     <div class="layui-main">
-        <form class="layui-form" action="javascript:jg()" method="post" style="margin:50px auto">
+        <form class="layui-form" action="/toSocial" method="post" style="margin:50px auto">
 
             <div class="layui-form-item">
                 <label class="layui-form-label">地区</label>
@@ -70,7 +70,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off"
+                    <input type="text" name="details" id="details" required lay-verify="required" placeholder="详细地址" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
@@ -82,14 +82,14 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">日期</label>
                         <div class="layui-input-inline">
-                            <input type="text" class="layui-input" id="test-limit2"
+                            <input type="text" class="layui-input" name="dateRange" id="dateRange"
                                    placeholder="yyyy-MM-dd">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">时间</label>
                         <div class="layui-input-inline">
-                            <input type="text" class="layui-input" id="test-limit3" placeholder="HH:mm:ss">
+                            <input type="text" class="layui-input" name="timeRange" id="timeRange" placeholder="HH:mm:ss">
                         </div>
                         <!--                        </div>-->
                         <!--                        </div>-->
@@ -101,9 +101,8 @@
                 <label class="layui-form-label">参与者</label>
                 <div class="layui-input-block">
                     <div class="layui-inline">
-                        <input type="checkbox" name="zzz" lay-skin="switch" lay-text="全选|全选">
-                        <input type="checkbox" name="" title="James" lay-skin="primary">
-                        <input type="checkbox" name="" title="Tom" lay-skin="primary">
+                        <input type="checkbox" name="participant" title="James" value="003" lay-skin="primary">
+                        <input type="checkbox" name="participant" title="Tom" value="004" lay-skin="primary">
                     </div>
                     <div class="kid-details">
                         <div class="card" style="width:200px">
@@ -137,12 +136,12 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">备注</label>
                 <div class="layui-input-block">
-                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <textarea name="ps" id="ps" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block text-center">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="submit" class="layui-btn" lay-filter="formDemo">立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -171,12 +170,6 @@
 
 <script src="kid/social/toSocial.js"></script>
 
-
-<script type="text/javascript">
-    function jg() {
-        alert($("#province").val() + $("#city").val() + $("#district").val());
-    }
-</script>
 
 <script>
     //一般直接写在一个js文件中

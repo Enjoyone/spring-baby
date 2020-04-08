@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>social</title>
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/preset.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+    <link rel="stylesheet" href="otherCss/style.css">
+
+    <link href="kid/social/layui/css/layui.css" rel="stylesheet"/>
+
+
+    <link rel="stylesheet" href="kid/social/social.css">
+
+
+</head>
+
+<body>
+
+<div th:include="/headerFooter/header :: html"></div>
+
+<section class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 text-center">
+                <div class="breadcrumb-content">
+                    <h2>Play</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="location">
+        <span>目前定位：</span>
+        <span>adsd</span>
+    </div>
+    <div class="con">
+        <div class="menu">
+
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" href="/toSocial" style="color: #2ab0ba">
+                            发起预约
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo"
+                           style=" color: #f1c712">
+                            预约清单
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div><a href="javascript:void(0)" class="will-do" data-toggle="modal"
+                                data-target="#will" style=" color: #92278f">未来预约</a></div>
+                        <div><a href="/history" style=" color: #00a651">所有预约</a></div>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" href="#" style="color: #ed117d">
+                            消息
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recommend">
+                <div>本城推荐</div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">激活列表项</a>
+                    <a href="#" class="list-group-item list-group-item-success">成功列表项</a>
+                    <a href="#" class="list-group-item list-group-item-secondary">次要列表项</a>
+                    <a href="#" class="list-group-item list-group-item-info">信息列表项</a>
+                    <a href="#" class="list-group-item list-group-item-warning">警告列表项</a>
+                    <a href="#" class="list-group-item list-group-item-danger">危险列表项</a>
+                    <a href="#" class="list-group-item list-group-item-primary">主要列表项</a>
+                    <a href="#" class="list-group-item list-group-item-dark">深灰色列表项</a>
+                    <a href="#" class="list-group-item list-group-item-light">浅色列表项</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="details">
+            details
+        </div>
+    </div>
+
+</div>
+
+<!-- 模态框 -->
+<div class="modal fade" id="will">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style=" color: #92278f">未来的预约</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul class="layui-timeline">
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">
+                                <a href="socialDetail">8月18日</a>
+                            </h3>
+                            <div>asdasd
+                            </div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">
+                                <a href="socialDetail">8月16日</a>
+                            </h3>
+                            <div>asdasd
+                            </div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">
+                                <a href="socialDetail">8月14日</a>
+                            </h3>
+                            <div>asdasd
+                            </div>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title"><a href="history">过去</a></div>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:include="/headerFooter/footer :: html">
+</div>
+
+<script src="kid/social/js/jquery-3.3.1.min.js"></script>
+<script src="kid/social/js/popper.min.js"></script>
+<script src="kid/social/js/bootstrap.min.js"></script>
+<script src="kid/social/layui/layui.js" type="text/javascript"></script>
+
+<script src="js/mixIt.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/main.js"></script>
+
+<script src="kid/social/social.js"></script>
+</body>
+
+</html>

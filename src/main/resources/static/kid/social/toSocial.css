@@ -1,0 +1,58 @@
+.container {
+}
+
+.con {
+    display: flex;
+    position: relative;
+}
+
+.con > div {
+    position: relative;
+    height: 100%;
+}
+
+.con > div:nth-child(1) {
+    flex: 1;
+}
+
+.con > div:nth-child(2) {
+    flex: 5;
+}
+
+
+.layui-form-item {
+
+}
+
+.layui-form-item > label {
+    width: 100px;
+}
+
+
+.kid-details{
+    display: flex;
+}
+.kid-details{
+
+}
+
+/*定位*/
+.location {
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@ public class AppTime {
 
     @Id
     @GeneratedValue
-    private int appTime;
+    private int appTimeID;
 
 
     private LocalDate startDay;
@@ -25,12 +25,12 @@ public class AppTime {
     private LocalTime stopTime;
 
 
-    public int getAppTime() {
-        return appTime;
+    public int getAppTimeID() {
+        return appTimeID;
     }
 
-    public void setAppTime(int appTime) {
-        this.appTime = appTime;
+    public void setAppTimeID(int appTimeID) {
+        this.appTimeID = appTimeID;
     }
 
     public LocalDate getStartDay() {

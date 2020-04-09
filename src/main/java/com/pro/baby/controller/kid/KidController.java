@@ -1,6 +1,8 @@
 package com.pro.baby.controller.kid;
 
 import com.pro.baby.entity.*;
+import com.pro.baby.service.address.AddressService;
+import com.pro.baby.service.appTime.AppTimeService;
 import com.pro.baby.service.appoint.AppointApplicationService;
 import com.pro.baby.service.kid.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,10 @@ public class KidController {
     private KidService kidService;
     @Autowired
     private AppointApplicationService appointApplicationService;
-
+    @Autowired
+    private AppTimeService appTimeService;
+    @Autowired
+    private AddressService addressService;
 
     //social界面
     @GetMapping("/social")
@@ -64,8 +69,17 @@ public class KidController {
 
     @PostMapping("/toSocial")
     @ResponseBody
-    public int toSocial(HttpSession session, Address address, String startDay, String stopDay, String startTime, String stopTime, String kids, String ps) {
+    public int toSocial(HttpSession session, String province, String city, String district, String details, String startDay, String stopDay, String startTime, String stopTime, String kids, String ps) {
         Parent parent = (Parent) session.getAttribute("parent");
+
+//地址
+        Address address = new Address();
+        address.setProvince(province);
+        address.setCity(city);
+        address.setDistrict(district);
+        address.setDetails(details);
+//        存储返回id
+        int addressID=addressService.addAddress(address);
 
 
 //        时间处理
@@ -80,12 +94,13 @@ public class KidController {
         appTime.setStopDay(stopDay1);
         appTime.setStartTime(startTime1);
         appTime.setStopTime(stopTime1);
+        int appTimeID=appTimeService.addAppTime(appTime);
 
 //   参与者（kid
 
         String[] kidList = kids.split(",");
         List<Integer> aa = new ArrayList<>();
-        System.out.println(kidList.length);
+
         for (String s : kidList) {
             System.out.println(s);
             aa.add(Integer.parseInt(s));

@@ -9,9 +9,9 @@ public class AppointApplication {
 
     @Id
     @GeneratedValue
-    private int AppointApplicationID;
+    private int appointApplicationID;
 
-    @ManyToOne
+    @OneToOne
     private Parent parent;
 
     @OneToOne
@@ -28,11 +28,11 @@ public class AppointApplication {
 
 
     public int getAppointApplicationID() {
-        return AppointApplicationID;
+        return appointApplicationID;
     }
 
     public void setAppointApplicationID(int appointApplicationID) {
-        AppointApplicationID = appointApplicationID;
+        this.appointApplicationID = appointApplicationID;
     }
 
     public Parent getParent() {

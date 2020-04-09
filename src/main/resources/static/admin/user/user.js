@@ -31,10 +31,10 @@ $(function(){
             // ajax
         	$.ajax({
 				type : "get",
-				url : "adminAffair",
+				url : "/adminAffair",
 				data : {
 					operateType:"userStatus",
-					operateCon:operateCon,
+					operateCon: operateCon,
 					userID : userID
 				},
 				datatype : "text",
@@ -110,10 +110,10 @@ $(function(){
 		$(".all-info").show();
 		$(".all-info").css("top", $(this).parent().parent().parent().offset().top);
 		$(".all-info").css("left",  $(this).offset().left+200);
-		
+
 		$(".all-info").find("."+userID).show().siblings().hide();
 	});
-		$("#back,.close").click(function(e) {   
+		$("#back,.close").click(function(e) {
 			$('#back').hide();
 			$(".all-info").hide();
 		});

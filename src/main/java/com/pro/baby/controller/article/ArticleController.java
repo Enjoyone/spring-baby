@@ -49,6 +49,24 @@ public class ArticleController {
 
 
 //    修改文章
+    @GetMapping("/updateArticle")
+    public String updateArticle(Model model,int articleID){
+        Article article = articleService.showArticle(articleID);
+        model.addAttribute("article", article);
+        return "/article/articleUpdate";
+    }
+
+    @PostMapping("/updateArticle")
+    public String updateArticle(String articleTitle,String articleContent,int articleTypeID) {
+        Article article=new Article();
+        ArticleType articleType=articleService.getOne(articleTypeID);
+
+        article.setArticleTitle(articleTitle);
+        article.setArticleType(articleType);
+        article.setArticleContent(articleContent);
+       // articleService.updateArticle(article);
+        return "redirect:/showArticle?articleI="+article.getArticleID();
+    }
 
 
 //    查看文章
@@ -61,6 +79,15 @@ public class ArticleController {
         return "article/articleShow";
     }
 
+
+//    @GetMapping("/findAllArticle")
+//    public String findAllArticle(){
+//        List<Article> articles;
+//        articles = articleService.articles();
+//
+//
+//        return articles;
+//    }
 
 
 

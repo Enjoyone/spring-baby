@@ -54,6 +54,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+<!--        用于分层的依赖-->
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>

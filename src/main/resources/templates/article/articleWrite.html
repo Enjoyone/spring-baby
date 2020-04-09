@@ -1,14 +1,14 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="/admin/common/common::html">
 <head>
-    <base href="<%=basePath%>">
+
     <meta charset="utf-8">
     <title>write</title>
 
     <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/fonts.css">
+<!--    <link rel="stylesheet" href="css/fonts.css">-->
     <link rel="stylesheet" href="css/preset.css">
     <link rel="stylesheet" href="otherCss/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -16,12 +16,25 @@
 
     <link rel="stylesheet" href="article/articleWrite.css">
 
+
+    <!-- Include All JavaScript -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mixIt.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/main.js"></script>
+
+
+    <script src="article/articleWrite.js"></script>
+    <script src="editor/wangEditor.min.js"></script>
+    <script src="article/editor.js"></script>
+
 </head>
 
 <body>
 
 
-<div class="container container-write">
+<div class="container container-write" layout:fragment="content"> >
     <!-- 提示 -->
     <div class="result alert-info"></div>
     <form class="form-group write-form" action="articleWrite" method="post">
@@ -96,17 +109,7 @@
     </form>
 </div>
 
-<!-- Include All JavaScript -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/mixIt.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/main.js"></script>
 
-
-<script src="article/articleWrite.js"></script>
-<script src="editor/wangEditor.min.js"></script>
-<script src="article/editor.js"></script>
 
 </body>
 

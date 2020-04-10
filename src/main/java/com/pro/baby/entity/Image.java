@@ -14,7 +14,9 @@ public class Image {
     private int imageID;
 
     private String url;
+
     private String imageNmae;
+
     private String userName;
 
     public String getUserName() {

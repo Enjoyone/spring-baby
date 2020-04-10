@@ -5,6 +5,7 @@ import com.pro.baby.repository.AppointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -37,4 +38,8 @@ public class AppointService {
     }
 
 
+    public List<Appoint> willAppoint(int parentID) {
+        LocalDate localDate=LocalDate.now();
+        return appointRepository.willAppoint(parentID,localDate);
+    }
 }

@@ -54,22 +54,44 @@
 }
 
 
-
-
 /*弹出框*/
-.modal-content{
-   padding-top: 6px;
+.modal-content {
+    padding-top: 6px;
     padding-bottom: 6px;
 }
-.modal-header .modal-title{
+
+.modal-header .modal-title {
     font-size: 25px;
 
 }
 
 
+/*预约弹窗*/
 
+.will-detail {
 
+}
+.will-detail > div:first-child{
+     display: flex;
+ }
+.will-detail > div:first-child>div:first-child{
+    flex: 1;
+}
+.will-detail > div:first-child>div:last-child{
+    flex: 1;
+}
 
+.will-detail > div:first-child span:last-child {
+   margin-left: 50px;
+}
+.will-detail > div > div span:first-child {
+    font-size: 20px;
+    padding:5px;
+}
+.will-detail > div > div span:last-child {
+    font-size: 15px;
+
+}
 
 
 

@@ -28,6 +28,11 @@ public class KidService {
         return kidSet;
     }
 
+//    返回个人儿童
+    public List<Kid> backKidOfParent(int parentID){
+
+        return kidRepository.backKidOfParent(parentID);
+    }
 
 
 

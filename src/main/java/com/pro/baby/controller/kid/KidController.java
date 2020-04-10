@@ -40,16 +40,15 @@ public class KidController {
     public String social(HttpSession session, Model model) {
         //    未来预约
         Parent parent = (Parent) session.getAttribute("parent");
-        List<Appoint> appoints = appointService.backbyParentID(parent.getParentID());
+//        个人所有
+//        List<Appoint> appoints = appointService.backbyParentID(parent.getParentID());
+// 个人未来
+        List<Appoint> appointList = appointService.willAppoint(parent.getParentID());
+//        for (Appoint a:appointList
+//             ) {
+//            System.out.println(a.getAppTime().getFinalDay());
+//        }
 
-        List<Appoint> appointList = new ArrayList<>();
-
-        for (Appoint a : appoints
-        ) {
-            if (a.getAppTime().getFinalDay().isAfter(LocalDate.now())) {
-                appointList.add(a);
-            }
-        }
         model.addAttribute("appointList", appointList);
 
 
@@ -79,8 +78,11 @@ public class KidController {
 
     //    预约
     @GetMapping("/toSocial")
-    public String toSocialIndex() {
-
+    public String toSocialIndex(Model model, HttpSession session) {
+        Parent parent = (Parent) session.getAttribute("parent");
+        List<Kid> kids = new ArrayList<>();
+        kids = kidService.backKidOfParent(parent.getParentID());
+        model.addAttribute("kids", kids);
         return "kid/social/toSocial";
     }
 

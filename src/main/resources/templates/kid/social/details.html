@@ -59,22 +59,17 @@
             </thead>
             <tbody>
             <tr>
-                <td>地点</td>
-                <td colspan="3"
-                    th:text="*{address.province+'--'+address.city+'--'+address.district+'--'+address.details}"></td>
-            </tr>
-            <tr th:if="*{stop}">
                 <td>时间</td>
-                <td colspan="3" th:text="*{appTime.finalDay+'----'+appTime.startTime+'--'+appTime.stopTime}"></td>
-            </tr>
-            <tr th:if="*{not stop}">
-                <td>时间</td>
-                <td colspan="3"
+                <td colspan="2" th:if="*{stop}" th:text="*{appTime.finalDay+'----'+appTime.startTime+'--'+appTime.stopTime}"></td>
+                <td colspan="2" th:if="*{not stop}"
                     th:text="*{appTime.startDay+'----'+appTime.stopDay+''+appTime.startTime+'--'+appTime.stopTime}"></td>
+                <td>地点</td>
+                <td colspan="2"
+                    th:text="*{address.province+'--'+address.city+'--'+address.district+'--'+address.details}"></td>
             </tr>
             <tr>
                 <td>参与者</td>
-                <td colspan="3" th:text="*{#sets.size(parents)}"></td>
+                <td colspan="3" th:text="*{#sets.size(parents)+#sets.size(kids)}"></td>
             </tr>
             </tbody>
         </table>

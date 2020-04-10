@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="/admin/common/common::html">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐计划添加</title>
+
+
+</head>
+<body>
+<div  layout:fragment="content">
+    <form class="layui-form" action="/addPlan" method="post">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">推荐标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-block">
+                <select name="age" lay-verify="required">
+                    <option value=""></option>
+                    <option value="出生24小时以内">出生24小时以内</option>
+                    <option value="满月">满月</option>
+                    <option value="2个月">2个月</option>
+                    <option value="3个月">3个月</option>
+                    <option value="4个月">4个月</option>
+                    <option value="5个月">5个月</option>
+                    <option value="6个月">6个月</option>
+                    <option value="7个月">7个月</option>
+                    <option value="8个月">8个月</option>
+                    <option value="9个月">9个月</option>
+                    <option value="9-12个月">9-12个月</option>
+                    <option value="12-18个月">12-18个月</option>
+                    <option value="18-24个月">18-24个月</option>
+                    <option value="24-36个月">24-36个月</option>
+                    <option value="36个月">36个月</option>
+                    <option value="48个月">48个月</option>
+                    <option value="6岁">6岁</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-block">
+                <input type="radio" name="type" value="疫苗" title="疫苗">
+                <input type="radio" name="type" value="训练" title="训练" checked>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">推荐内容</label>
+            <div class="layui-input-block">
+                <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>
+
+</body>
+</html>

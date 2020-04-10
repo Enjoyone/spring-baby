@@ -51,28 +51,28 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="/admin">首页文章管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">文章草稿</a></dd>
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a href="javascript:;">文章草稿</a></dd>-->
 
-                    </dl>
+<!--                    </dl>-->
                 </li>
 
                 <li class="layui-nav-item">
-                    <a href="javascript:;">用户推荐管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">健康提醒录入</a></dd>
-                        <dd><a href="javascript:;">健康提醒推荐</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
+                    <a href="/planManage">成长计划推荐管理</a>
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a href="javascript:;">健康提醒录入</a></dd>-->
+<!--                        <dd><a href="javascript:;">健康提醒推荐</a></dd>-->
+<!--                        <dd><a href="">超链接</a></dd>-->
+<!--                    </dl>-->
                 </li>
 
                 <li class="layui-nav-item">
                     <a href="javascript:;">配对管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">配对规则</a></dd>
-                        <dd><a href="javascript:;">配对记录</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a href="javascript:;">配对规则</a></dd>-->
+<!--                        <dd><a href="javascript:;">配对记录</a></dd>-->
+<!--                        <dd><a href="">超链接</a></dd>-->
+<!--                    </dl>-->
                 </li>
 
 
@@ -91,63 +91,7 @@
 
         </div>
 
-        <!--        <div style="padding: 15px;">-->
 
-            <!--			<div>-->
-            <!--				&lt;!&ndash; 添加文章 &ndash;&gt;-->
-            <!--				<form class="layui-form">-->
-            <!--					<div class="layui-form-item">-->
-            <!--						<label class="layui-form-label">标题</label>-->
-            <!--						<div class="layui-input-block">-->
-            <!--							<input type="text" name="title" required lay-verify="required" placeholder="请输入标题"-->
-            <!--								   autocomplete="off" class="layui-input">-->
-            <!--						</div>-->
-
-            <!--						<label class="layui-form-label">类型</label>-->
-            <!--						<div class="layui-input-block">-->
-            <!--							<select name="city" lay-verify="required">-->
-            <!--								<option value=""></option>-->
-            <!--								<option value="0">类型1</option>-->
-            <!--								<option value="1">类型2</option>-->
-            <!--								<option value="2">类型3</option>-->
-            <!--								<option value="3">类型4</option>-->
-            <!--								<option value="4">添加</option>-->
-
-            <!--							</select>-->
-            <!--						</div>-->
-            <!--						<div class="layui-form-item layui-form-text">-->
-            <!--							<label class="layui-form-label">文本域</label>-->
-            <!--							<div class="layui-input-block">-->
-            <!--                                    <textarea name="desc" placeholder="请输入内容" id="demo" style="display: none;"-->
-            <!--											  class="layui-textarea"></textarea>-->
-            <!--							</div>-->
-
-            <!--						</div>-->
-            <!--						<div class="layui-input-block">-->
-            <!--							<button class="layui-btn" lay-submit lay-filter="formDemo">保存到草稿</button>-->
-            <!--							<button class="layui-btn" lay-submit lay-filter="formDemo">提交并发布</button>-->
-            <!--							<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
-            <!--						</div>-->
-
-            <!--						&lt;!&ndash; <textarea id="demo" style="display: none;"></textarea> &ndash;&gt;-->
-            <!--					</div>-->
-
-
-            <!--				</form>-->
-
-
-
-
-            <!--			</div>-->
-
-
-
-
-            <!-- 内容主体区域 -->
-
-
-
-<!--        </div>-->
     </div>
 
     <div class="layui-footer">
@@ -164,31 +108,6 @@
 
     });
 </script>
-
-
-
-<!--&lt;!&ndash; 用于页面添加文章与编辑文章、、、 &ndash;&gt;-->
-<!--<script>-->
-<!--	//文章添加与编辑页面 富文本构造-->
-<!--	layui.use('layedit', function () {-->
-<!--		var layedit = layui.layedit;-->
-<!--		// 图片接口-->
-<!--		layedit.set({-->
-<!--			uploadImage: {-->
-<!--				url: '' //接口url-->
-<!--				,-->
-<!--				type: '' //默认post-->
-<!--			}-->
-<!--		});-->
-<!--		//注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。-->
-<!--		layedit.build('demo', {-->
-<!--			height: 500 //高度500-->
-<!--		}); //建立编辑器-->
-<!--	});-->
-<!--	//layedit.build('demo'); //建立编辑器-->
-<!--</script>-->
-
-
 
 
 </body>

@@ -108,8 +108,8 @@ $(function(){
 		var userID=$(this).text();
 		$('#back').show();
 		$(".all-info").show();
-		$(".all-info").css("top", $(this).parent().parent().parent().offset().top);
-		$(".all-info").css("left",  $(this).offset().left+200);
+		$(".all-info").css("top",50);
+		$(".all-info").css("left", 50);
 
 		$(".all-info").find("."+userID).show().siblings().hide();
 	});
@@ -119,16 +119,16 @@ $(function(){
 		});
 });
 
-// 管理员界面 判定
-$(function(){
-	
-	$(".type").each(function(){
-		if($(this).text()=="超级管理员"){
-			$(this).siblings(".operateTD").hide();
-			
-		}	
-	});
-});
+// // 管理员界面 判定
+// $(function(){
+//
+// 	$(".type").each(function(){
+// 		if($(this).text()=="超级管理员"){
+// 			$(this).siblings(".operateTD").hide();
+//
+// 		}
+// 	});
+// });
 
 
 

@@ -30,28 +30,36 @@ public class ArticleController {
 
 
     @PostMapping("/articleWrite")
-    @ResponseBody
-    public int articleWrite(String articleTitle,String articleContent,int articleTypeID) {
+    public String articleWrite(String articleTitle,String articleContent,String articleTypeID) {
 
         Article article=new Article();
-        ArticleType articleType=articleService.getOne(articleTypeID);
+        ArticleType articleType=articleService.getOne(Integer.parseInt(articleTypeID));
 
         article.setArticleTitle(articleTitle);
         article.setArticleType(articleType);
         article.setArticleContent(articleContent);
 
-        return articleService.addArticle(article);
+        return "redirect:/showArticle?articleID="+articleService.addArticle(article);
     }
 
 
 
 //    删除文章
+    @GetMapping("/deleteArticle")
+    @ResponseBody
+    public String deleteArticle(int articleID){
+        articleService.deleteArticleByID(articleID);
+        return "1";
+    }
 
 
 //    修改文章
     @GetMapping("/updateArticle")
-    public String updateArticle(Model model,int articleID){
-        Article article = articleService.showArticle(articleID);
+    public String updateArticle(Model model,String articleID){
+        int id = Integer.parseInt(articleID);
+        List<ArticleType> articleTypes=articleService.backArticleTypes();
+        model.addAttribute("articleTypes",articleTypes);
+        Article article = articleService.showArticle(id);
         model.addAttribute("article", article);
         return "/article/articleUpdate";
     }

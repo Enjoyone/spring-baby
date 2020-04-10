@@ -20,17 +20,22 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr th:each="article : ${ articles }" >
+		<tr th:each="article : ${ articles }"  >
 			<td th:text="${article.articleID}"></td>
-			<td th:text="${article.articleTitle}"></td>
+
+				<td >
+					<a th:text="${article.articleTitle}" th:href="@{/showArticle(articleID=${article.articleID})}"></a>
+				</td>
+
+
 			<td th:text="${article.articleType.articleTypeName}"></td>
 			<td th:text="${article.articleCreateTime}"></td>
 
 			<td>
-				<a th:href="@{/updateArticle?articleID=${article.articleID} }" type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+				<a th:href="@{/updateArticle(articleID= ${article.articleID} ) } " type="button" class="layui-btn layui-btn-sm layui-btn-primary">
 					<i class="layui-icon">&#xe642;</i>
 				</a>
-				<button  type="button" class="layui-btn layui-btn-sm">
+				<button  type="button" class="layui-btn layui-btn-sm delete-bt">
 					<i class="layui-icon">&#xe640;</i>
 				</button>
 			</td>
@@ -41,6 +46,34 @@
 			<i class="layui-icon">&#xe608;</i> 添加
 		</a>
 	</table>
+
+
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script>
+
+		// 删除
+		// ajax
+		$(".delete-bt").click(function () {
+			var bt1=$(this);
+			var articleID= $(this).parent().prev().prev().prev().prev().text();
+			$.ajax({
+				type : "get",
+				url : "/deleteArticle",
+				data : {
+
+					articleID: articleID
+				},
+				datatype : "text",
+				success : function(data) {
+					bt1.parent().parent().remove();
+				}
+			});
+
+
+		})
+
+	</script>
+
 </div>
 
 </body>

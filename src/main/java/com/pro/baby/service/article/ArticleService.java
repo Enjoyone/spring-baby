@@ -77,5 +77,7 @@ public class ArticleService {
     }
 
 
-
+    public void deleteArticleByID(int articleID) {
+        articleRepository.deleteById(articleID);
+    }
 }

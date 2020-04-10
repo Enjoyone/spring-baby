@@ -48,12 +48,20 @@ public class ArticleService {
         return articleRepository.getOne(articleID);
     }
 
+    //返回所有文章
     public List<Article> articles() {
         return articleRepository.findAll();
     }
 
 
-//    修改日记
+
+
+
+//    修改文章
+
+    public void updateArticle(Article article){
+        //articleRepository.updateArticleById(article.getArticleID(),article.getArticleTitle(),article.getArticleContent(),article.getArticleType());
+    }
 
 
 //    删除日记
@@ -69,4 +77,7 @@ public class ArticleService {
     }
 
 
+    public void deleteArticleByID(int articleID) {
+        articleRepository.deleteById(articleID);
+    }
 }

@@ -18,4 +18,7 @@ public interface UserRepository extends JpaRepository<Parent, Integer> {
     //    userName  是否存在
     boolean existsParentByUserName(String userName);
 
+    //返回所有
+    List<Parent> findAllByParentIDNotNull();
+
 }

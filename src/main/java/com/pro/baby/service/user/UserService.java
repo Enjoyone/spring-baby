@@ -38,5 +38,8 @@ public class UserService {
         }
     }
 
+    public List<Parent> AllParents(){
+        return userRepository.findAll();
+    }
 
 }

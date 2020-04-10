@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="/admin/common/common::html">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐计划管理</title>
+
+
+</head>
+<body>
+<div  layout:fragment="content">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>类型</th>
+            <th>年龄</th>
+            <th>内容</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="plan : ${ plans }"  >
+            <td th:text="${plan.planID}"></td>
+
+            <td th:text="${plan.title}">
+
+            </td>
+
+            <td th:text="${plan.type}"></td>
+            <td th:text="${plan.age}"></td>
+            <td th:text="${plan.content}"></td>
+
+
+            <td>
+
+                <button  type="button" class="layui-btn layui-btn-sm bt1">
+                    删除
+                </button>
+            </td>
+        </tr>
+
+        </tbody>
+        <a href="/addPlan" type="button" class="layui-btn">
+            <i class="layui-icon">&#xe608;</i> 添加
+        </a>
+    </table>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script>
+
+    // 删除
+    // ajax
+    $(".bt1").click(function () {
+        var bt1=$(this);
+       var planID= $(this).parent().prev().prev().prev().prev().prev().text();
+        $.ajax({
+            type : "post",
+            url : "/admindeletePlan",
+            data : {
+
+                planID: planID
+            },
+            datatype : "text",
+            success : function(data) {
+                    bt1.parent().parent().remove();
+            }
+            });
+
+
+    })
+
+    </script>
+
+
+
+</div>
+
+</body>
+</html>

@@ -30,25 +30,51 @@ public class ArticleController {
 
 
     @PostMapping("/articleWrite")
-    @ResponseBody
-    public int articleWrite(String articleTitle,String articleContent,int articleTypeID) {
+    public String articleWrite(String articleTitle,String articleContent,String articleTypeID) {
 
+        Article article=new Article();
+        ArticleType articleType=articleService.getOne(Integer.parseInt(articleTypeID));
+
+        article.setArticleTitle(articleTitle);
+        article.setArticleType(articleType);
+        article.setArticleContent(articleContent);
+
+        return "redirect:/showArticle?articleID="+articleService.addArticle(article);
+    }
+
+
+
+//    删除文章
+    @GetMapping("/deleteArticle")
+    @ResponseBody
+    public String deleteArticle(int articleID){
+        articleService.deleteArticleByID(articleID);
+        return "1";
+    }
+
+
+//    修改文章
+    @GetMapping("/updateArticle")
+    public String updateArticle(Model model,String articleID){
+        int id = Integer.parseInt(articleID);
+        List<ArticleType> articleTypes=articleService.backArticleTypes();
+        model.addAttribute("articleTypes",articleTypes);
+        Article article = articleService.showArticle(id);
+        model.addAttribute("article", article);
+        return "/article/articleUpdate";
+    }
+
+    @PostMapping("/updateArticle")
+    public String updateArticle(String articleTitle,String articleContent,int articleTypeID) {
         Article article=new Article();
         ArticleType articleType=articleService.getOne(articleTypeID);
 
         article.setArticleTitle(articleTitle);
         article.setArticleType(articleType);
         article.setArticleContent(articleContent);
-
-        return articleService.addArticle(article);
+       // articleService.updateArticle(article);
+        return "redirect:/showArticle?articleI="+article.getArticleID();
     }
-
-
-
-//    删除文章
-
-
-//    修改文章
 
 
 //    查看文章
@@ -61,6 +87,15 @@ public class ArticleController {
         return "article/articleShow";
     }
 
+
+//    @GetMapping("/findAllArticle")
+//    public String findAllArticle(){
+//        List<Article> articles;
+//        articles = articleService.articles();
+//
+//
+//        return articles;
+//    }
 
 
 

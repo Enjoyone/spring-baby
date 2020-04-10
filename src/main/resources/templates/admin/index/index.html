@@ -1,42 +1,79 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="/admin/common/common::html">
 <head>
 
-<meta charset="UTF-8">
-<title>admin index</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="admin/common/common.css">
-<link rel="stylesheet" href="admin/message/index/index.css">
-
 </head>
-
 <body>
-	<div class="admin">
-		<div class="admin-left" th:include="/admin/common/left::html">
+<div  layout:fragment="content">
+	<table class="layui-table">
+		<colgroup>
+			<col width="150">
+			<col width="200">
+			<col>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>标题</th>
+			<th>类型</th>
+			<th>创建时间</th>
+			<th>操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="article : ${ articles }"  >
+			<td th:text="${article.articleID}"></td>
 
-<!--		<%@include file="../common/left.html" %>-->
-
-		</div>
-
-		<div class="admin-right" th:include="/admin/common/rightHeader::html">
-
-<!--		<%@include file="../common/rightHeader.html" %>-->
+				<td >
+					<a th:text="${article.articleTitle}" th:href="@{/showArticle(articleID=${article.articleID})}"></a>
+				</td>
 
 
-		<div class="con">
-		con
-		</div>
-		</div>
-		
-	</div>
+			<td th:text="${article.articleType.articleTypeName}"></td>
+			<td th:text="${article.articleCreateTime}"></td>
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="admin/common/common.js"></script>
-	<script src="admin/message/index/index.js"></script>
-	
+			<td>
+				<a th:href="@{/updateArticle(articleID= ${article.articleID} ) } " type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+					<i class="layui-icon">&#xe642;</i>
+				</a>
+				<button  type="button" class="layui-btn layui-btn-sm delete-bt">
+					<i class="layui-icon">&#xe640;</i>
+				</button>
+			</td>
+		</tr>
+
+		</tbody>
+		<a href="/articleWrite" type="button" class="layui-btn">
+			<i class="layui-icon">&#xe608;</i> 添加
+		</a>
+	</table>
+
+
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script>
+
+		// 删除
+		// ajax
+		$(".delete-bt").click(function () {
+			var bt1=$(this);
+			var articleID= $(this).parent().prev().prev().prev().prev().text();
+			$.ajax({
+				type : "get",
+				url : "/deleteArticle",
+				data : {
+
+					articleID: articleID
+				},
+				datatype : "text",
+				success : function(data) {
+					bt1.parent().parent().remove();
+				}
+			});
+
+
+		})
+
+	</script>
+
+</div>
+
 </body>
-
-</html>
-</body>
-</html>

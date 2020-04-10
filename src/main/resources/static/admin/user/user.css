@@ -70,8 +70,8 @@ text-align: center;
 
 .all-info{
 	display:none;
-	position:absolute;
-	width: 900px;
+	position:relative;
+	width: 800px;
 	z-index: 999;
 }
 .all-info tr>td:nth-child(1){

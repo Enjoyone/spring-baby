@@ -53,7 +53,7 @@
                                 <a href="#"
                                    th:text="${session.parent.userName}"></a>
                                 <ul>
-                                    <li><a href="#">个人中心</a></li>
+                                    <li><a th:href="@{/userCenter(userName=${session.parent.userName})}">个人中心</a></li>
                                     <li><a href="logout">退出</a></li>
                                 </ul>
                             </li>

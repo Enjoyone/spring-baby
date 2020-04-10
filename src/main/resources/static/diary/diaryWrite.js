@@ -83,13 +83,13 @@ $(function() {
 
 $(function() {
 	var typeNum = 0;
-	$('[name="diaryType"]').each(function() {
+	$('[name="diaryTypeID"]').each(function() {
 		$(this).children("option").each(function() {
 			typeNum = typeNum + 1;
 		});
 	});
 	if (typeNum > 2) {
-		$('[name="diaryType"]').change(function() {
+		$('[name="diaryTypeID"]').change(function() {
 			var data = $(this).val();
 			if (data === "0") {
 				$(".add-articleType").show();
@@ -108,7 +108,7 @@ $(function() {
 			function() {
 				var eq = false;
 				var con = $('[name="new_type_name"]').val();
-				$('[name="diaryType"]').each(function() {
+				$('[name="diaryTypeID"]').each(function() {
 					$(this).children("option").each(function() {
 						var n = $(this).text(); // 每一个option
 						if (n === con) {
@@ -141,10 +141,10 @@ $(function() {
 								$(".add-articleType").hide();
 								// 刷新文章类型
 
-								$('[name="diaryType"]').prepend(
+								$('[name="diaryTypeID"]').prepend(
 										"<option value='" + data + "'>" + con
 												+ "</option>");
-								$('[name="diaryType"]').val(data);
+								$('[name="diaryTypeID"]').val(data);
 								$(".add-articleType").hide();
 
 							} else {
@@ -159,80 +159,80 @@ $(function() {
 
 // 提交验证
 // 提交验证
-
-$(function () {
-
-
-	// 1. 立即提交
-	$(".submit-button").click(function () {
-		// console.log("11");
-		// ajaxArticle("0");
-
-		var diaryTitle = $('[name="diaryTitle"]').val();
-		var diaryType = $('[name="diaryType"]').val();
-		var diaryContent = $('#content').val();
-
-
-		console.log(diaryTitle);
-		console.log(diaryType);
-		console.log(diaryContent);
-
-
-		$.ajax({
-			type: "post",
-			url: "writeDiary",
-			data: {
-				diaryTitle: diaryTitle,
-				diaryType: diaryType,
-				diaryContent: diaryContent,
-			},
-			datatype: "json",
-			success: function (data) {
-				// -1 保存失败 1 show article 0 back userCenter
-				console.log(data);
-				if (data != 0 && data != -1) {
-					$(".result").show();
-					$(".result").html("保存成功！");
-					var sec = 2;
-					setInterval(function () {
-						sec--;
-						if (sec < 0) {
-							window.location.href = "showDiary?diaryID="
-								+ data;
-						}
-					}, 1000);
-
-				}
-				if (data == 0) {
-					$(".result").show();
-					$(".result").html("保存成功！");
-					var sec = 2;
-					setInterval(function () {
-						sec--;
-						if (sec < 0) {
-							window.location.href = "userCenter";
-						}
-					}, 1000);
-
-				}
-				if (data == -1) {
-					$(".result").show();
-					$(".result").html("保存失败！");
-
-					var sec = 3;
-					setInterval(function () {
-						sec--;
-						if (sec < 0) {
-							$(".result").hide();
-						}
-						$(this).stop();
-					}, 1000);
-				}
-
-			}
-		});
-
-
-	});
-
-});
+//
+// $(function () {
+//
+//
+// 	// 1. 立即提交
+// 	$(".submit-button").click(function () {
+// 		// console.log("11");
+// 		// ajaxArticle("0");
+//
+// 		var diaryTitle = $('[name="diaryTitle"]').val();
+// 		var diaryType = $('[name="diaryType"]').val();
+// 		var diaryContent = $('#content').val();
+//
+//
+// 		console.log(diaryTitle);
+// 		console.log(diaryType);
+// 		console.log(diaryContent);
+//
+//
+// 		$.ajax({
+// 			type: "post",
+// 			url: "writeDiary",
+// 			data: {
+// 				diaryTitle: diaryTitle,
+// 				diaryType: diaryType,
+// 				diaryContent: diaryContent,
+// 			},
+// 			datatype: "json",
+// 			success: function (data) {
+// 				// -1 保存失败 1 show article 0 back userCenter
+// 				console.log(data);
+// 				if (data != 0 && data != -1) {
+// 					$(".result").show();
+// 					$(".result").html("保存成功！");
+// 					var sec = 2;
+// 					setInterval(function () {
+// 						sec--;
+// 						if (sec < 0) {
+// 							window.location.href = "showDiary?diaryID="
+// 								+ data;
+// 						}
+// 					}, 1000);
+//
+// 				}
+// 				if (data == 0) {
+// 					$(".result").show();
+// 					$(".result").html("保存成功！");
+// 					var sec = 2;
+// 					setInterval(function () {
+// 						sec--;
+// 						if (sec < 0) {
+// 							window.location.href = "userCenter";
+// 						}
+// 					}, 1000);
+//
+// 				}
+// 				if (data == -1) {
+// 					$(".result").show();
+// 					$(".result").html("保存失败！");
+//
+// 					var sec = 3;
+// 					setInterval(function () {
+// 						sec--;
+// 						if (sec < 0) {
+// 							$(".result").hide();
+// 						}
+// 						$(this).stop();
+// 					}, 1000);
+// 				}
+//
+// 			}
+// 		});
+//
+//
+// 	});
+//
+// });

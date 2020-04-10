@@ -34,20 +34,24 @@ public class DiaryController {
     @GetMapping("/writeDiary")
     public String toAddDiary(Model model, HttpSession session) {
         Parent parent = (Parent) session.getAttribute("parent");
-        List<DiaryType> diaryTypes = diaryService.backDiaryTypes(parent.getParentID());
-        model.addAttribute("diaryTypes", diaryTypes);
+        if(parent!=null){
+            List<DiaryType> diaryTypes = diaryService.backDiaryTypes(parent.getParentID());
+            model.addAttribute("diaryTypes", diaryTypes);
 
-        return "diary/diaryWrite";
+            return "diary/diaryWrite";
+
+        }
+       else
+           return "redirect:/login";
     }
 
 
     @PostMapping("/writeDiary")
-    @ResponseBody
-    public int addDiary(String diaryTitle, String diaryContent, int diaryType, HttpSession session) {
+    public String addDiary(String diaryTitle, String diaryContent, int diaryTypeID, HttpSession session) {
 
         Parent parent = (Parent) session.getAttribute("parent");
 
-        DiaryType diaryType1 = diaryService.getOne(diaryType);
+        DiaryType diaryType1 = diaryService.getOne(diaryTypeID);
 
         Diary diary = new Diary();
         diary.setDiaryTitle(diaryTitle);
@@ -56,17 +60,23 @@ public class DiaryController {
         diary.setParent(parent);
         diary.setDiaryType(diaryType1);
 
-        return diaryService.addDiary(diary);
+        return "/showDiary?diaryID="+diaryService.addDiary(diary);
     }
 
 
     //    展示日记
     @GetMapping("/showDiary")
     public String diaryShow(int diaryID, Model model) {
-        Diary diary = diaryService.diaryShow(diaryID);
-        model.addAttribute("diary", diary);
+        if(diaryID!=0){
+            Diary diary = diaryService.diaryShow(diaryID);
+            model.addAttribute("diary", diary);
 
-        return "diary/diaryShow";
+            return "diary/diaryShow";
+
+        }
+        else
+            return "redirect:userCenter";
+
     }
 
 

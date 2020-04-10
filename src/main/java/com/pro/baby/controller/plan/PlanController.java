@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -17,8 +18,11 @@ public class PlanController {
     private PlanService planService;
 
     @GetMapping("/addPlan")
-    public String addPlan(){
+    public String addPlan(HttpSession session){
+        if(session.getAttribute("adminID")!=null)
         return "/admin/recommendPlan/recommendPlanadd";
+        else
+            return "redirect:adminLogin";
     }
 
     @PostMapping("/addPlan")
@@ -34,11 +38,15 @@ public class PlanController {
     }
 
     @GetMapping("/planManage")
-    public String planManage(Model model){
-        List<Plan> plans ;
-           plans= planService.findAll();
-        model.addAttribute("plans",plans);
-        return "/admin/recommendPlan/Planmanage";
+    public String planManage(Model model,HttpSession session){
+        if(session.getAttribute("adminID")!=null) {
+            List<Plan> plans;
+            plans = planService.findAll();
+            model.addAttribute("plans", plans);
+            return "/admin/recommendPlan/Planmanage";
+        }
+        else
+            return "redirect:adminLogin";
     }
 
     @PostMapping("/admindeletePlan")

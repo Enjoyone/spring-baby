@@ -15,7 +15,36 @@ public class Kid {
     private String name;
     private String gender;
     private LocalDate birth;
+    private int age;
+
+
+    private String character; //性格
+    private String hobby;//兴趣爱好
     private boolean status = true;
+
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
 
 
     public int getKidID() {

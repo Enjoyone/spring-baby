@@ -5,6 +5,8 @@ import com.pro.baby.service.address.AddressService;
 import com.pro.baby.service.appTime.AppTimeService;
 import com.pro.baby.service.appoint.AppointApplicationService;
 import com.pro.baby.service.kid.KidService;
+import com.pro.baby.service.plan.PlanService;
+import com.pro.baby.service.schedule.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 @Controller
 public class KidController {
@@ -33,6 +33,10 @@ public class KidController {
     private AppTimeService appTimeService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private PlanService planService;
+    @Autowired
+    private RecommendService recommendService;
 
     //social界面
     @GetMapping("/social")
@@ -118,6 +122,108 @@ public class KidController {
         appointApplication.setPs(ps);//备注  ps
 
         return appointApplicationService.createApp(appointApplication);
+    }
+
+
+    //添加孩子
+    @PostMapping("/addKid")
+    public String addKid(String name,String birth,String gender,String character,String hobby,Model model,HttpSession session){
+        Kid kid = new Kid();
+        kid.setCharacter(character);
+        kid.setGender(gender);
+        kid.setHobby(hobby);
+        kid.setName(name);
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        kid.setBirth(LocalDate.parse(birth,df));
+        Parent parent = (Parent)session.getAttribute("parent");
+        kid.setParent(parent);
+        kid.setAge(kid.getBirth().until(LocalDate.now()).getYears());
+        kidService.addKid(kid);
+
+
+        //生成相关推荐
+
+        LocalDate date = kid.getBirth();
+
+        List<Plan> plans = planService.findAll();
+        for(int i =0;i<plans.size();i++){
+            Plan p = plans.get(i);
+            RecommendPlan r = new RecommendPlan();
+            r.setParent(parent);
+            r.setRecommendPlanContent(p.getContent());
+            r.setRecommendPlanTitle(p.getTitle());
+            LocalDate redate;
+            if(p.getAge().equals("1个月")){
+                redate = date.plusMonths(1);
+            }
+            else if(p.getAge().equals("2个月")){
+                redate = date.plusMonths(2);
+            }
+            else if(p.getAge().equals("3个月")){
+                redate = date.plusMonths(3);
+            }
+            else if(p.getAge().equals("4个月")){
+                redate = date.plusMonths(4);
+            }
+            else if(p.getAge().equals("5个月")){
+                redate = date.plusMonths(5);
+            }
+            else if(p.getAge().equals("6个月")){
+                redate = date.plusMonths(6);
+            }
+            else if(p.getAge().equals("7个月")){
+                redate = date.plusMonths(7);
+            }
+            else if(p.getAge().equals("8个月")){
+                redate = date.plusMonths(8);
+            }
+            else if(p.getAge().equals("9个月")){
+                redate = date.plusMonths(9);
+            }
+            else if(p.getAge().equals("9-12个月")){
+                redate = date.plusMonths(10);
+            }
+            else if(p.getAge().equals("12-18个月")){
+                redate = date.plusMonths(12);
+            }
+            else if(p.getAge().equals("18-24个月")){
+                redate = date.plusMonths(18);
+            }
+            else if(p.getAge().equals("24-36个月")){
+                redate = date.plusMonths(24);
+            }
+            else if(p.getAge().equals("36个月")){
+                redate = date.plusMonths(36);
+            }
+            else if(p.getAge().equals("48个月")){
+                redate = date.plusMonths(48);
+            }
+            else if(p.getAge().equals("6岁")){
+                redate = date.plusMonths(74);
+            }
+            else
+                redate = date;
+
+            r.setRecommendPlanRemindTime(redate);
+            recommendService.addPlan(r);
+
+        }
+//        //得到月份
+//        long age = date.until(LocalDate.now(), ChronoUnit.MONTHS);
+
+        return "redirect:/mybaby";
+    }
+
+    @GetMapping("/mybaby")
+    public String getMybaby(Model model,HttpSession session){
+        Parent parent = (Parent)session.getAttribute("parent");
+        if(parent!=null){
+            List<Kid> kids = kidService.findBabyByParent(parent);
+            model.addAttribute("kids",kids);
+            return "/kid/myKids";
+        }
+        else
+            return "redirect:/login";
     }
 
 

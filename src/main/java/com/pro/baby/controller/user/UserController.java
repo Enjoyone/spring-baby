@@ -63,6 +63,21 @@ public class UserController {
         return "redirect:/";
     }
 
+    //个人中心
+    @GetMapping("/userCenter")
+    public String userCenter(Model model,String userName){
+
+
+        return "/user/userCenter";
+    }
+
+
+
+
+    @GetMapping("/info")
+    public String aboutus(){
+        return "/about/about-us";
+    }
 
 }
 

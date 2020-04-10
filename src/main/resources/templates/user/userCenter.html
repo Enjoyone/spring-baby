@@ -17,110 +17,54 @@
 	<link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="user/user.css">
     <link rel="stylesheet" href="headerFooter/header.css">
+<!--    <link rel="stylesheet" href="layui/css/layui.css" >-->
 
 </head>
 
 <body>
-	<div>
-	</div>
+<div th:include="/headerFooter/header :: html"></div>
 	<!-- Breadcrumb  -->
 	<section class="breadcrumb-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 col-xs-12 text-center">
 					<div class="breadcrumb-content">
-						<h2>个人中心</h2>
+						<h3>个人中心</h3>
 					</div>
 				</div>
+                <ul class="main-menu pull-left">
+                    <li><a href="plan">计划</a></li>
+                    <li><a href="mybaby">孩子</a></li>
+
+                    <li><a href="showDiary">日记</a></li>
+
+                    <li><a href="myInfo">个人资料</a></li>
+                </ul>
 			</div>
 		</div>
 	</section>
 	<!-- /.breadcrumb-section  -->
+    <section class="team-section" layout:fragment="content" >
 
 
-	<!-- Team Section -->
-	<section class="team-section">
-        <div class="container">
-            <ul class="main-menu limenu">
-                <li class="da">日记</li>
-                <li class="inf">资料</li>
-                <li class="colle">收藏记录</li>
-                <li class="add">添加孩子<strong>+</strong></li>
-            </ul>
-            
 
-            <div class="dairy-list">
-                <div class="dairy card">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some example text. Some example text.</p>
-                        <a href="#" class="card-link">#旅游</a>
-                        <a href="#" class="card-link">更多</a>
-                      </div>
-                </div>
-                <div class="dairy card">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some example text. Some example text.</p>
-                        <a href="#" class="card-link">#旅游¸</a>
-                        <a href="#" class="card-link">更多</a>
-                      </div>
-                </div>
-            </div>
-
-
-            <div class="userinfo card container">
-                <div class="card-body ">
-                    <p>Tommy</p>
-                    <p>女</p>
-                    <p>生日：1990-5-1</p>
-                    <p>孩子：Jan,Mary</p>
-                    <p>Phone:100xxxx0000</p>
-                </div>
-                   <button class="btn">修改</button> 
-            </div>
-
-
-            <div class="collect-list">
-                <div class="collect card">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some example text. Some example text.</p>
-                        <a href="#" class="card-link">取消收藏</a>
-                        <a href="#" class="card-link">更多</a>
-                      </div>
-                </div>
-
-            </div>
-
-            <div class="addkid">
-                <form action="">
-                    <div class="form-group">
-                        	姓名：	<input class="form-control"  name="kidName" type="text">
-                    </div>
-                    <div class="form-group">
-                       		 性别: <input name="sex" type="radio" value="男">男孩
-                              <input name="sex" type="radio" value="女">女孩
-                    </div>
-                    <div class="form-group">
-                       		 出生日期：<input class="form-control"  name="kiDbirth" type="text">
-                    </div>
-                    <button  class="btn btn-primary" type="submit"> 添加</button>
-                </form>
-            </div>
-
-        </div>
+    </section>
 
 
 
 
-	</section>
 	<!-- /.team-section -->
+<div th:include="/headerFooter/footer :: html">
+</div>
 
 	<!-- Include All JavaScript -->
 	<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="user/user.js"></script>
+    <script src="layui/layui.js"></script>
+<script>
+
+</script>
 
 
 </body>

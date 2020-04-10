@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -21,16 +22,20 @@ public class ArticleController {
 
 //写文章
 
-    @GetMapping("/articleWrite")
-    public String toArticleWrite(Model model) {
-        List<ArticleType> articleTypes=articleService.backArticleTypes();
-        model.addAttribute("articleTypes",articleTypes);
-        return "article/articleWrite";
+    @GetMapping("/articleWrite" )
+    public String toArticleWrite(Model model , HttpSession session) {
+        if(session.getAttribute("adminID")!=null) {
+            List<ArticleType> articleTypes = articleService.backArticleTypes();
+            model.addAttribute("articleTypes", articleTypes);
+            return "article/articleWrite";
+        }
+        else
+            return "redirect:adminLogin";
     }
 
 
     @PostMapping("/articleWrite")
-    public String articleWrite(String articleTitle,String articleContent,String articleTypeID) {
+    public String articleWrite(String articleTitle,String articleContent,String articleTypeID,HttpSession session) {
 
         Article article=new Article();
         ArticleType articleType=articleService.getOne(Integer.parseInt(articleTypeID));
@@ -47,25 +52,33 @@ public class ArticleController {
 //    删除文章
     @GetMapping("/deleteArticle")
     @ResponseBody
-    public String deleteArticle(int articleID){
-        articleService.deleteArticleByID(articleID);
-        return "1";
+    public String deleteArticle(int articleID,HttpSession session){
+        if(session.getAttribute("adminID")!=null) {
+            articleService.deleteArticleByID(articleID);
+            return "1";
+        }
+        else
+            return "redirect:adminLogin";
     }
 
 
 //    修改文章
     @GetMapping("/updateArticle")
-    public String updateArticle(Model model,String articleID){
-        int id = Integer.parseInt(articleID);
-        List<ArticleType> articleTypes=articleService.backArticleTypes();
-        model.addAttribute("articleTypes",articleTypes);
-        Article article = articleService.showArticle(id);
-        model.addAttribute("article", article);
-        return "/article/articleUpdate";
+    public String updateArticle(Model model,String articleID,HttpSession session){
+        if(session.getAttribute("adminID")!=null) {
+            int id = Integer.parseInt(articleID);
+            List<ArticleType> articleTypes = articleService.backArticleTypes();
+            model.addAttribute("articleTypes", articleTypes);
+            Article article = articleService.showArticle(id);
+            model.addAttribute("article", article);
+            return "/article/articleUpdate";
+        }
+        else
+            return "redirect:adminLogin";
     }
 
     @PostMapping("/updateArticle")
-    public String updateArticle(String articleTitle,String articleContent,int articleTypeID) {
+    public String updateArticle(String articleTitle,String articleContent,int articleTypeID,HttpSession session) {
         Article article=new Article();
         ArticleType articleType=articleService.getOne(articleTypeID);
 
@@ -103,7 +116,7 @@ public class ArticleController {
 //    1 添加
     @GetMapping("/addArticleType")
     @ResponseBody
-    public String addArticleType(ArticleType articleType) {
+    public String addArticleType(ArticleType articleType,HttpSession session) {
           articleService.addArticleType(articleType);
         return "1";
     }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -25,15 +26,20 @@ public class AdminController {
     private UserService userService;
 
     @GetMapping("/admin")
-    public String Admin(Model model){
-
+    public String Admin(Model model ,HttpSession session){
+        if(session.getAttribute("adminID")!=null){
         List<Article> articles;
         articles= articleService.articles();
         model.addAttribute("articles",articles);
 
         return "admin/index/index";
+        }
+        else
+            return "redirect:adminLogin";
+
     }
 
+    //登录
     @GetMapping("/adminLogin")
     public String AdminLogin(){
         return "admin/login/login";
@@ -47,7 +53,12 @@ public class AdminController {
         }else
             return  "redirect:adminLogin";
     }
-
+    //    退出
+    @GetMapping("/adminLogout")
+    public String logout(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        return "redirect:adminLogin";
+    }
 
 //    @GetMapping("/adminAffair")
 //    public void adminAffair(String operateType){
@@ -57,15 +68,20 @@ public class AdminController {
 //    }
 
     @GetMapping("/adminWeb/normalUser")
-    public  String normalUserWeb(Model model){
-        List<Parent> normalUser ;
-        normalUser=userService.AllParents();
-        model.addAttribute("normalUser",normalUser);
-        return "admin/user/normalUser";
+    public  String normalUserWeb(Model model,HttpSession session){
+        if(session.getAttribute("adminID")!=null) {
+            List<Parent> normalUser;
+            normalUser = userService.AllParents();
+            model.addAttribute("normalUser", normalUser);
+            return "admin/user/normalUser";
+        }
+        else
+            return "redirect:adminLogin";
     }
 
     @GetMapping("/adminWeb/article")
-    public String articleWeb(Model model,String changeBack,String pageIndex){
+    public String articleWeb(Model model,String changeBack,String pageIndex,HttpSession session){
+        if(session.getAttribute("adminID")!=null) {
         List<Article> articleList;
         if(changeBack!=null){
             int pageIndexInt =Integer.parseInt(String.valueOf(pageIndex));
@@ -76,6 +92,9 @@ public class AdminController {
         articleList= adminService.articlePageDao(1,10);
         model.addAllAttributes(articleList);
         return "/admin/article/article";
+        }
+        else
+            return "redirect:adminLogin";
     }
 
 
@@ -86,7 +105,8 @@ public class AdminController {
 
     //修改用户状态
     @GetMapping("/adminAffair")
-    public String changeUserStatus(String operateCon,String userID){
+    public String changeUserStatus(String operateCon,String userID,HttpSession session){
+        if(session.getAttribute("adminID")!=null) {
         System.out.println("change1111111");
         boolean toStatus = !operateCon.equals("lock");
 //        放回用户修改后的状态，和是否修改成功
@@ -103,6 +123,10 @@ public class AdminController {
 //            model.addAttribute("-1");
             return  "-1";
         }
+        }
+        else
+            return "redirect:adminLogin";
     }
+
 
 }

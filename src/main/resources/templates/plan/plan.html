@@ -1,10 +1,9 @@
-﻿
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="/user/userCenter::html">
 
 
 <head>
-	<base href="<%=basePath%>">
+
 	<title>plan</title>
 	<meta charset="UTF-8">
 
@@ -20,88 +19,26 @@
 	<link rel="stylesheet" href="otherCss/style.css">
 	<link rel="stylesheet" href="css/responsive.css">
 
-	<link rel="stylesheet" href="./plan.css">
+	<link rel="stylesheet" href="plan/plan.css">
 
 </head>
 
 <body>
-	<!-- Header Area -->
-	<header class="header-area inner-page">
-		<!-- /.header-top -->
-		<nav class="navigation">
-			<div class="logo pull-left">
-				<a href="index.html">贝小乐</a>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 col-xs-12">
-
-						<ul class="main-menu pull-left">
-							<li>
-								<a href="index.html">首页</a>
-
-							</li>
-							<li><a href="#">关于</a></li>
-							<li class="menu-has-child">
-								<a href="#">计划</a>
-								<ul>
-									<li>
-										<a href="#">未来</a>
-										<ul>
-											<li><a href="#">Event</a></li>
-										</ul>
-									</li>
-									<li><a href="#">所有</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="shortcode.html">同城</a>
-								<ul>
-									<li><a href="#">Classes Details</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#" id="search-pop"><i class="fa fa-search"></i></a>
-							</li>
-						</ul>
-						<ul class="main-menu pull-right">
-							<li class="menu-has-child">
-								<a href="#">James</a>
-								<ul>
-									<li>
-										<a href="#">个人中心</a>
-									</li>
-									<li>
-										<a href="#">退出</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="search-area">
-				<form action="#" method="post">
-					<input type="search" name="search" placeholder="Enter your Search Text Here....">
-				</form>
-				<a href="#" class="search-close"><i class="fa fa-times"></i></a>
-			</div>
-		</nav>
-	</header>
-	<!-- /.header-area -->
-
+<div layout:fragment="content" >
+<!--	<div th:include="/headerFooter/header :: html"></div>-->
 	<!-- Breadcrumb  -->
-	<section class="breadcrumb-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 col-xs-12 text-center">
-					<div class="breadcrumb-content">
-						<h2>Plan</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<!--	<section class="breadcrumb-section">-->
+<!--&lt;!&ndash;		<div class="container">&ndash;&gt;-->
+<!--			<h2>Plan</h2>-->
+<!--&lt;!&ndash;			<div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;				<div class="col-sm-12 col-xs-12 text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;					<div class="breadcrumb-content">&ndash;&gt;-->
+<!--&lt;!&ndash;						<h2>Plan</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+<!--&lt;!&ndash;				</div>&ndash;&gt;-->
+<!--&lt;!&ndash;			</div>&ndash;&gt;-->
+<!--&lt;!&ndash;		</div>&ndash;&gt;-->
+<!--	</section>-->
 	<!-- /.breadcrumb-section  -->
 
 	<section class="classes-section-3">
@@ -110,7 +47,7 @@
 				<div class="col-sm-12 col-xs-12">
 					<div class="class-sort-btn-section">
 						<ul class="sort-btn pull-left">
-							<li><a href="#">添加</a></li>
+							<li><button class="btn " data-toggle="modal" data-target="#myModal">添加</button></li>
 							<li><a href="#">日历</a></li>
 							<li><a href="#">所有</a></li>
 						</ul>
@@ -134,96 +71,101 @@
 			<div class="plan-show">
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">
-						<div class="single-event">
+
+						<div class="single-event" th:each="s:${scheduls}">
 							<div class="event-img">
 								<img src="images/event/thumb1.jpg" alt="">
 								<div class="class-hover">
 									<a class="popup" href="images/event/thumb1.jpg"><i class="icon-link"></i></a>
 								</div>
-								<a href="#">1日<span>12月</span></a>
+
 							</div>
-							<h3><a href="#">拜访英语老师</a></h3>
-							<a href="#">14:00 - 16:00</a>
-							<a href="#">幼儿园</a>
-							<p>
-								去幸福幼儿园拜访孩子的英语老师
+							<h3><a href="#" th:text="${s.scheduleTitle}"></a></h3>
+							<a href="#" th:text="${s.setScheduleRemindTime()}"></a>
+							<a href="#" th:text="${s.location}"></a>
+							<p th:text="${s.scheduleContent}">
+
 							</p>
 						</div>
-						<div class="single-event">
-							<div class="event-img">
-								<img src="images/event/thumb3.jpg" alt="">
-								<div class="class-hover">
-									<a class="popup" href="images/event/thumb3.jpg"><i class="icon-link"></i></a>
-								</div>
-								<a href="#" class="bg2">3日<span>12月</span></a>
-							</div>
-							<h3><a href="#">打疫苗</a></h3>
-							<a href="#">9:00 - 11:00</a>
-							<a href="#">社区卫生院</a>
-							<p>
-								记得带户口本,接种证
-							</p>
+
+<!--						<div class="single-event">-->
+<!--							<div class="event-img">-->
+<!--								<img src="images/event/thumb3.jpg" alt="">-->
+<!--								<div class="class-hover">-->
+<!--									<a class="popup" href="images/event/thumb3.jpg"><i class="icon-link"></i></a>-->
+<!--								</div>-->
+<!--								<a href="#" class="bg2">3日<span>12月</span></a>-->
+<!--							</div>-->
+<!--							<h3><a href="#">打疫苗</a></h3>-->
+<!--							<a href="#">9:00 - 11:00</a>-->
+<!--							<a href="#">社区卫生院</a>-->
+<!--							<p>-->
+<!--								记得带户口本,接种证-->
+<!--							</p>-->
 
 
-						</div>
-						<div class="single-event">
-							<div class="event-img">
-								<img src="images/event/thumb5.jpg" alt="">
-								<div class="class-hover">
-									<a class="popup" href="images/event/thumb5.jpg"><i class="icon-link"></i></a>
-								</div>
-								<a href="#" class="bg3">8日<span>12月</span></a>
-							</div>
-							<h3><a href="#">体检</a></h3>
-							<a href="#">14:00 - 15:00</a>
-							<a href="#">市人民医院</a>
-							<p>
-								带户口本身份证
-							</p>
-						</div>
+<!--						</div>-->
+<!--						<div class="single-event">-->
+<!--							<div class="event-img">-->
+<!--								<img src="images/event/thumb5.jpg" alt="">-->
+<!--								<div class="class-hover">-->
+<!--									<a class="popup" href="images/event/thumb5.jpg"><i class="icon-link"></i></a>-->
+<!--								</div>-->
+<!--								<a href="#" class="bg3">8日<span>12月</span></a>-->
+<!--							</div>-->
+<!--							<h3><a href="#">体检</a></h3>-->
+<!--							<a href="#">14:00 - 15:00</a>-->
+<!--							<a href="#">市人民医院</a>-->
+<!--							<p>-->
+<!--								带户口本身份证-->
+<!--							</p>-->
+<!--						</div>-->
 
 					</div>
-					<div class="col-sm-6 col-xs-12">
-						<div class="single-event">
-							<div class="event-img">
-								<img src="images/event/thumb2.jpg" alt="">
-								<div class="class-hover">
-									<a class="popup" href="images/event/thumb2.jpg"><i class="icon-link"></i></a>
-								</div>
-								<a href="#" class="bg4">9日<span>12月</span></a>
-							</div>
-							<h3><a href="#">买幼儿教育书籍</a></h3>
-							<a href="#">14:00 - 16:00</a>
-							<a href="#">跑马街新华书店</a>
-							<p>
-								英语，数学，国学，启蒙教育
-							</p>
-						</div>
-						<div class="single-event">
-							<div class="event-img">
-								<img src="images/event/thumb4.jpg" alt="">
-								<div class="class-hover">
-									<a class="popup" href="images/event/thumb4.jpg"><i class="icon-link"></i></a>
-								</div>
-								<a href="#" class="bg5">20<span>1/span></a>
-							</div>
-							<h3><a href="#">和小朋友玩耍</a></h3>
-							<a href="#">14:00 - 16:00</a>
-							<a href="#">和平街10号</a>
-							<p>
-								带上自己的玩具
-							</p>
-						</div>
-					</div>
+<!--					<div class="col-sm-6 col-xs-12">-->
+<!--						<div class="single-event">-->
+<!--							<div class="event-img">-->
+<!--								<img src="images/event/thumb2.jpg" alt="">-->
+<!--								<div class="class-hover">-->
+<!--									<a class="popup" href="images/event/thumb2.jpg"><i class="icon-link"></i></a>-->
+<!--								</div>-->
+<!--								<a href="#" class="bg4">9日<span>12月</span></a>-->
+<!--							</div>-->
+<!--							<h3><a href="#">买幼儿教育书籍</a></h3>-->
+<!--							<a href="#">14:00 - 16:00</a>-->
+<!--							<a href="#">跑马街新华书店</a>-->
+<!--							<p>-->
+<!--								英语，数学，国学，启蒙教育-->
+<!--							</p>-->
+<!--						</div>-->
+<!--						<div class="single-event">-->
+<!--							<div class="event-img">-->
+<!--								<img src="images/event/thumb4.jpg" alt="">-->
+<!--								<div class="class-hover">-->
+<!--									<a class="popup" href="images/event/thumb4.jpg"><i class="icon-link"></i></a>-->
+<!--								</div>-->
+<!--								<a href="#" class="bg5">20<span>1</span></a>-->
+<!--							</div>-->
+<!--							<h3><a href="#">和小朋友玩耍</a></h3>-->
+<!--							<a href="#">14:00 - 16:00</a>-->
+<!--							<a href="#">和平街10号</a>-->
+<!--							<p>-->
+<!--								带上自己的玩具-->
+<!--							</p>-->
+<!--						</div>-->
+<!--						-->
+<!--					</div>-->
 				</div>
 				<div class="recommend-plan">
 					<div class="text-center p-3">
 						推荐计划
 					</div>
 					<hr>
-					<div>
-						<img src="./images/recommend/图片1.png" alt="qwe">
-						<span class="badge badge-pill badge-danger">水痘疫苗</span>
+
+					<div class="card" th:each="r :${recommendPlans}">
+						<div class="card-header" th:text="${ r.recommendPlanTitle}"></div>
+						<div class="card-body"  th:text="${ r.recommendPlanContent}"></div>
+<!--						<div class="card-footer"><button type="button" class="layui-btn">加入日程</button></div>-->
 					</div>
 
 				</div>
@@ -251,17 +193,60 @@
 
 		</div>
 	</section>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade  modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						添加日程
+					</h4>
+				</div>
+				<form action="/addKid" method="post">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="name" >标题:</label>
+							<input name="scheduleTitle" type="text" class="form-control" id="name" placeholder="">
+						</div>
+
+						<div class="form-group">
+							<label for="birth">时间:</label>
+							<input type="text" name="scheduleRemindTime" class="form-control" id="birth" placeholder="xxxx-xx-xx">
+						</div>
+						<div class="form-group">
+							<label for="hobby">内容:</label>
+							<input type="text" name="scheduleContent" class="form-control" id="hobby" placeholder="">
+						</div>
+						<div class="form-group">
+							<label for="character">地点:</label>
+							<input type="text" name="location" class="form-control" id="character" placeholder="">
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="submit" class="btn btn-primary">
+							添加
+						</button>
+					</div>
+
+				</form>
+
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+
+
+
 	<!-- /.event-section -->
 
-	<!-- Footer Section -->
-	<footer class="footer-section">
-		<div class="container">
-			<div class="row">
-
-			</div>
-		</div>
-	</footer>
-	<!-- /.footer-section -->
+<!--	<div th:include="/headerFooter/footer :: html">-->
+<!--	</div>-->
 
 	<!-- Include All JavaScript -->
 	<script src="js/jquery.min.js"></script>
@@ -269,6 +254,9 @@
 	<script src="js/mixIt.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/main.js"></script>
+
+</div>
+
 </body>
 
 </html>

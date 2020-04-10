@@ -2,6 +2,7 @@ package com.pro.baby.service.kid;
 
 
 import com.pro.baby.entity.Kid;
+import com.pro.baby.entity.Parent;
 import com.pro.baby.repository.KidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,13 +29,19 @@ public class KidService {
         return kidSet;
     }
 
+//添加孩子
+    public void addKid(Kid kid) {
+        kidRepository.save(kid);
 
 
 
+    }
+    //删除孩子
+    public void deleteKid(int kidID){
+        kidRepository.deleteById(kidID);
+    }
 
-
-
-
-
-
+    public List<Kid> findBabyByParent(Parent parent) {
+        return kidRepository.findAllByParent(parent);
+    }
 }

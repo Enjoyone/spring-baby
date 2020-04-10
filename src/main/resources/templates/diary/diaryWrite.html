@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" layout:decorate="/user/userCenter::html">
 
 <head>
     <base href="<%=basePath%>">
@@ -14,91 +14,100 @@
     <link rel="stylesheet" href="css/preset.css">
     <link rel="stylesheet" href="otherCss/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
 
 
     <link rel="stylesheet" href="diary/diaryWrite.css">
+    <script src="layui/layui.all.js"></script>
+
 
 </head>
 
 <body>
 
-<div th:include="/headerFooter/header :: html"></div>
-<div class="container container-write">
-    <!-- 提示 -->
-    <div class="result alert-info"></div>
-    <form class="form-group write-form" action="/writeDiary" method="post">
-        <div class="input-group">
+<div layout:fragment="content">
+<!--    <div th:include="/headerFooter/header :: html"></div>-->
+    <div class="container container-write">
+        <!-- 提示 -->
+        <div class="result alert-info"></div>
+        <form class="form-group write-form" action="/writeDiary" method="post">
+            <div class="input-group">
 
-            <label for="diaryTitle">日记标题： <input type="text"
-                                                 name="diaryTitle" id="diaryTitle" placeholder="请输入标题"
-                                                 value=""
-                                                 autocomplete="off"> <span style="font-size: 15px;">字数：<span
-                    class="title-words">0</span>/<span class="title-max-words">25</span></span>
-            </label>
-        </div>
-
-        <div class="form-inline">
-            <label class="">日记类型： <select name="diaryType"
-                                          class="form-control mr-3">
-
-                <option th:each="diaryType: ${diaryTypes}" th:value="${diaryType.diaryTypeID}"
-                        th:text="${diaryType.diaryTypeName}">
-                </option>
-
-                <option value="-1" disabled>————</option>
-                <option value="0" class="new-article-type">新建类型</option>
-
-            </select> <span style="display: none" class="addResult"></span>
-                <div class="add-articleType input-group mb-auto" style="display: none;">
-
-                    <input type="text" class="form-control" placeholder="文章类型名称"
-                           name="new_type_name">
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-success add-type">添加</button>
-                        <button type="button" class="btn btn-warning close-type">取消</button>
-                    </div>
-                    <span class="type-warning" style="color: red;display: none;">已存在！</span>
-                </div>
-            </label>
-        </div>
-
-        <div>
-            <span class="textarea1">文本域：</span>
-            <div id="edit">
-                <!--					<c:if test="${isExited eq '1'}">${article.articleContent}</c:if>-->
+                <label for="diaryTitle">日记标题： <input type="text"
+                                                     name="diaryTitle" id="diaryTitle" placeholder="请输入标题"
+                                                     value=""
+                                                     autocomplete="off"> <span style="font-size: 15px;">字数：<span
+                        class="title-words">0</span>/<span class="title-max-words">25</span></span>
+                </label>
             </div>
-            <textarea id="content"
-                      name="content" style="width:100%; height:200px;display: none;"></textarea>
-            <div class="text-right">
+
+            <div class="form-inline">
+                <label class="">日记类型： <select name="diaryTypeID"
+                                              class="form-control mr-3">
+
+                    <option th:each="diaryType: ${diaryTypes}" th:value="${diaryType.diaryTypeID}"
+                            th:text="${diaryType.diaryTypeName}">
+                    </option>
+
+                    <option value="-1" disabled>————</option>
+                    <option value="0" class="new-article-type">新建类型</option>
+
+                </select> <span style="display: none" class="addResult"></span>
+                    <div class="add-articleType input-group mb-auto" style="display: none;">
+
+                        <input type="text" class="form-control" placeholder="文章类型名称"
+                               name="new_type_name">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-success add-type">添加</button>
+                            <button type="button" class="btn btn-warning close-type">取消</button>
+                        </div>
+                        <span class="type-warning" style="color: red;display: none;">已存在！</span>
+                    </div>
+                </label>
+            </div>
+
+            <div>
+<!--                <span class="textarea1">文本域：</span>-->
+<!--                <div id="edit">-->
+<!--                    &lt;!&ndash;					<c:if test="${isExited eq '1'}">${article.articleContent}</c:if>&ndash;&gt;-->
+<!--                </div>-->
+                <textarea id="content"
+                          name="content" style="width:100%; height:200px;display: none;"></textarea>
+                <div class="text-right">
 					<span class="badge badge-pill badge-danger over-words"
                           style="display: none">!</span> <span>字数：</span> <span
-                    class="now-words">0</span> <span>/</span> <span class="max-words">4000</span>
+                        class="now-words">0</span> <span>/</span> <span class="max-words">4000</span>
+                </div>
             </div>
-        </div>
 
-        <hr>
-        <div class="submit-info"></div>
-        <div class="article_final">
-            <div class="btn-group ">
+            <hr>
+            <div class="submit-info"></div>
+            <div class="article_final">
+                <div class="btn-group ">
 
-                <button type="button" class="btn btn-primary submit-button">立即提交</button>
+                    <button  class="layui-btn submit-button"  lay-submit   lay-filter="tweets_sub">立即提交</button>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
-<div th:include="/headerFooter/footer :: html">
-</div>
-<!-- Include All JavaScript -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/mixIt.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/main.js"></script>
+        </form>
+    </div>
+<!--    <div th:include="/headerFooter/footer :: html">-->
+<!--    </div>-->
+    <!-- Include All JavaScript -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mixIt.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/main.js"></script>
 
 
-<script src="diary/diaryWrite.js"></script>
-<script src="editor/wangEditor.min.js"></script>
-<script src="diary/editor.js"></script>
+    <script src="diary/diaryWrite.js"></script>
+<!--    <script src="editor/wangEditor.min.js"></script>-->
+    <script src="diary/editor.js"></script>
+
+
+
+</div>
+
 
 </body>
 

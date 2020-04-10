@@ -94,7 +94,7 @@ $(function () {
                         setInterval(function () {
                             sec--;
                             if (sec < 0) {
-                                window.location.href = "socialDetail?appID="
+                                window.location.href = "socialDetail?appointID="
                                     + data;
                             }
                         }, 1000);

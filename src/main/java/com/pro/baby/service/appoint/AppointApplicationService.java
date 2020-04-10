@@ -15,20 +15,18 @@ public class AppointApplicationService {
 //    create
 
 
-//    返回
-    public AppointApplication backDetail(int appID){
+    //    返回
+    public AppointApplication backDetail(int appID) {
 
         return appointApplicationRepository.getOne(appID);
     }
 
 
     //  添加预约单
-    public int createApp(AppointApplication appointApplication){
-        appointApplicationRepository.save(appointApplication);
-        return appointApplication.getAppointApplicationID();
+    public AppointApplication createApp(AppointApplication appointApplication) {
+        return appointApplicationRepository.save(appointApplication);
+
     }
-
-
 
 
 }

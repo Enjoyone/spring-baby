@@ -3,7 +3,7 @@ package com.pro.baby.controller.kid;
 import com.pro.baby.entity.*;
 import com.pro.baby.service.address.AddressService;
 import com.pro.baby.service.appTime.AppTimeService;
-import com.pro.baby.service.appoint.AppointApplicationService;
+import com.pro.baby.service.appoint.AppointService;
 import com.pro.baby.service.kid.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,34 +29,50 @@ public class KidController {
     @Autowired
     private KidService kidService;
     @Autowired
-    private AppointApplicationService appointApplicationService;
-    @Autowired
     private AppTimeService appTimeService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private AppointService appointService;
 
     //social界面
     @GetMapping("/social")
-    public String social() {
+    public String social(HttpSession session, Model model) {
+        //    未来预约
+        Parent parent = (Parent) session.getAttribute("parent");
+        List<Appoint> appoints = appointService.backbyParentID(parent.getParentID());
+
+        List<Appoint> appointList = new ArrayList<>();
+
+        for (Appoint a : appoints
+        ) {
+            if (a.getAppTime().getFinalDay().isAfter(LocalDate.now())) {
+                appointList.add(a);
+            }
+        }
+        model.addAttribute("appointList", appointList);
+
 
         return "kid/social/social";
     }
 
 
-    //清单
+    //清单//    所有预约
     @GetMapping("/history")
-    public String history() {
-
+    public String history(Model model, HttpSession session) {
+        Parent parent = (Parent) session.getAttribute("parent");
+        List<Appoint> appoints = appointService.backbyParentID(parent.getParentID());
+        model.addAttribute("appoints", appoints);
         return "kid/social/history";
     }
 
 
     //    预约详情
     @GetMapping("/socialDetail")
-    public String socialDetails(int appID, Model model) {
-//        AppointApplication appointApplication=appointApplicationService.backDetail(appID);
-//
-//        model.addAttribute("app",appointApplication);
+    public String socialDetails(int appointID, Model model) {
+        Appoint appoint = appointService.getOne(appointID);
+        model.addAttribute("appoint", appoint);
+
         return "kid/social/details";
     }
 
@@ -78,12 +95,18 @@ public class KidController {
         address.setCity(city);
         address.setDistrict(district);
         address.setDetails(details);
+
+
 //        存储返回id
-        int addressID=addressService.addAddress(address);
+        int addressID = addressService.addAddress(address);
 
 
 //        时间处理
         AppTime appTime = new AppTime();
+        System.out.println(startDay);
+        System.out.println(stopDay);
+        System.out.println(startTime);
+        System.out.println(stopTime);
 
         LocalDate startDay1 = LocalDate.parse(startDay, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate stopDay1 = LocalDate.parse(stopDay, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -94,7 +117,7 @@ public class KidController {
         appTime.setStopDay(stopDay1);
         appTime.setStartTime(startTime1);
         appTime.setStopTime(stopTime1);
-        int appTimeID=appTimeService.addAppTime(appTime);
+        int appTimeID = appTimeService.addAppTime(appTime);
 
 //   参与者（kid
 
@@ -116,9 +139,20 @@ public class KidController {
         appointApplication.setAddress(address);
         appointApplication.setAppTime(appTime);
         appointApplication.setPs(ps);//备注  ps
+        //        一开始
+        Set<Parent> parents = new HashSet<>();
+        parents.add(parent);
 
-        return appointApplicationService.createApp(appointApplication);
+
+        Appoint appoint = new Appoint();
+        appoint.setParent(parent);
+        appoint.setParents(parents);
+        appoint.setKids(kidSet);
+        appoint.setAddress(address);
+        appoint.setAppTime(appTime);
+        appoint.setPs(ps);
+
+        return appointService.add(appoint);
     }
-
 
 }

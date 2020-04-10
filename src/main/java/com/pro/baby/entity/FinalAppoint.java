@@ -1,7 +1,6 @@
 package com.pro.baby.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +27,10 @@ public class FinalAppoint {
 
     private String appointLevel;
     private String appointComment;
-    private boolean status=true;
+
+    private boolean stop=false;  //结束停止加入，并确认最后时间
+    private boolean haveDone=false;//  判断是否完成本次预约
+    private boolean status=true;  //是否失效
 
 
     public int getFinalAppointID() {
@@ -93,6 +95,22 @@ public class FinalAppoint {
 
     public void setAppointComment(String appointComment) {
         this.appointComment = appointComment;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public boolean isHaveDone() {
+        return haveDone;
+    }
+
+    public void setHaveDone(boolean haveDone) {
+        this.haveDone = haveDone;
     }
 
     public boolean isStatus() {

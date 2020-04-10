@@ -45,27 +45,36 @@
 
     <div>
 
-        <table class="table table-striped table-hover table-bordered">
+        <table class="table table-striped table-hover table-bordered" th:object="${appoint}">
             <thead>
             <tr>
                 <th>预约单号</th>
-                <th>11111</th>
+                <th th:text="*{appointID}"></th>
                 <th>发起者</th>
-                <th>James</th>
+                <th th:text="*{parent.userName}"></th>
+                <th>状态</th>
+                <th th:if="*{status}" th:text="*{stop} eq true ?'停止':'未停止'"></th>
+                <th th:if="*{not status}">失效</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>地点</td>
-                <td colspan="3">Doe</td>
+                <td colspan="3"
+                    th:text="*{address.province+'--'+address.city+'--'+address.district+'--'+address.details}"></td>
             </tr>
-            <tr>
+            <tr th:if="*{stop}">
                 <td>时间</td>
-                <td  colspan="3">Moe</td>
+                <td colspan="3" th:text="*{appTime.finalDay+'----'+appTime.startTime+'--'+appTime.stopTime}"></td>
+            </tr>
+            <tr th:if="*{not stop}">
+                <td>时间</td>
+                <td colspan="3"
+                    th:text="*{appTime.startDay+'----'+appTime.stopDay+''+appTime.startTime+'--'+appTime.stopTime}"></td>
             </tr>
             <tr>
                 <td>参与者</td>
-                <td  colspan="3">Dooley</td>
+                <td colspan="3" th:text="*{#sets.size(parents)}"></td>
             </tr>
             </tbody>
         </table>
@@ -73,28 +82,23 @@
 
     </div>
 
-
-    <div class="card">
-        <div class="card-header">
-            <a href="">John Doe</a>
-        </div>
-        <div class="card-body">
-            <table class="table table-hover table-striped .table-bordered">
-                <tbody>
-                <tr class="table-primary">
-                    <td><a href="">James</a></td>
-                    <td>男</td>
-                    <td>3岁</td>
-                    <td>玩水</td>
-                </tr>
-                <tr class="table-info">
-                    <td><a href="">James</a></td>
-                    <td>男</td>
-                    <td>3岁</td>
-                    <td>玩水</td>
-                </tr>
-                </tbody>
-            </table>
+    <div th:each="pp:${appoint.parents}">
+        <div class="card">
+            <div class="card-header">
+                <a href="" th:text="${pp.userName}"></a>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-striped .table-bordered">
+                    <tbody th:each="kk:${appoint.kids}" >
+                    <tr class="table-primary" th:if="${kk.parent.userName eq pp.userName}">
+                        <td><a href="" th:text="${kk.name}"></a></td>
+                        <td th:text="${kk.gender}"></td>
+                        <td th:text="${kk.birth}"></td>
+                        <td>循环爱好类</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
